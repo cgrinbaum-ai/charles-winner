@@ -1,552 +1,979 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Charles Is A Winner</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Charles Is A Winner — Est. 1776</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    min-height: 100vh;
-    background: #0A0A0F;
-    font-family: Georgia, serif;
-    color: #F5F0E8;
-    overflow-x: hidden;
-  }
-  .bg {
-    position: fixed; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse at 20% 10%, #1a1040 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 85%, #0d2a1a 0%, transparent 55%);
-    pointer-events: none;
-  }
-  .wrap {
-    position: relative; z-index: 1;
-    max-width: 640px; margin: 0 auto;
-    padding: 36px 18px 80px;
-  }
-  .badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #000; font-size: 10px; font-weight: 700;
-    letter-spacing: 3px; padding: 4px 12px; border-radius: 2px;
-    margin-bottom: 14px; font-family: Arial, sans-serif; text-transform: uppercase;
-  }
-  h1 { font-size: clamp(34px, 7vw, 56px); font-weight: 900; line-height: 1; letter-spacing: -2px; }
-  h1 span {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .date { color: #555; margin-top: 10px; font-size: 14px; font-style: italic; }
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@300;400;500&display=swap');
 
-  /* Streak bar */
-  .streak-bar {
-    border-radius: 14px; padding: 20px 22px; margin-bottom: 22px;
-    transition: all 0.3s;
+  :root {
+    --navy: #0A1628;
+    --navy2: #122040;
+    --red: #B22234;
+    --red2: #8B0000;
+    --cream: #FDF8F0;
+    --gold: #FFD700;
+    --gold2: #C8A000;
+    --white: #FFFFFF;
+    --muted: #8892A4;
+    --border: #1E2F4A;
+    --green: #27AE60;
+    --light-blue: #3A6BC4;
   }
-  .streak-bar.active { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.18); }
-  .streak-bar.complete { background: linear-gradient(135deg, #FFD700, #FFA500); border: 1px solid #FFD700; }
-  .streak-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-  .streak-label { font-family: Arial, sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
-  .streak-label.active { color: #FFD700; }
-  .streak-label.complete { color: #000; }
-  .streak-title { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
-  .streak-title.active { color: #F5F0E8; }
-  .streak-title.complete { color: #000; }
-  .streak-pct { font-size: 32px; font-weight: 900; font-family: Arial, sans-serif; }
-  .streak-pct.active { color: #FFD700; }
-  .streak-pct.complete { color: #000; }
-  .progress-track { background: rgba(0,0,0,0.3); border-radius: 99px; height: 7px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
-  .progress-fill.active { background: linear-gradient(90deg, #FFD700, #FFA500); }
-  .progress-fill.complete { background: #000; }
-  .streak-sub { margin-top: 7px; font-size: 11px; color: #555; font-style: italic; }
 
-  /* Tabs */
-  .tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 22px; }
-  .tab {
-    flex: 1; padding: 11px 0; background: transparent; border: none;
-    border-bottom: 2px solid transparent;
-    color: #555; font-family: Arial, sans-serif; font-size: 10px;
-    letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
-    cursor: pointer; transition: all 0.2s;
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { background:var(--navy); }
+  body { background:var(--navy); color:var(--white); font-family:'DM Sans',system-ui,sans-serif; max-width:480px; margin:0 auto; min-height:100vh; }
+
+  /* PIXEL FONT HELPER */
+  .pixel { font-family:'Press Start 2P', monospace; }
+
+  /* MOTD BANNER */
+  .motd-banner {
+    background:linear-gradient(90deg, var(--red2), #6B0000, var(--red2));
+    border-bottom:2px solid var(--gold2);
+    border-top:1px solid rgba(255,215,0,0.2);
+    padding:0.55rem 1rem;
+    text-align:center;
+    position:sticky;
+    top:84px;
+    z-index:45;
   }
-  .tab.active { background: rgba(255,215,0,0.08); border-bottom-color: #FFD700; color: #FFD700; }
+  .motd-label { font-family:'Press Start 2P',monospace; font-size:0.38rem; color:rgba(255,215,0,0.5); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:3px; }
+  .motd-text { font-family:'Press Start 2P',monospace; font-size:0.48rem; color:var(--gold); line-height:1.8; letter-spacing:0.03em; }
 
-  /* Win meter */
-  .win-meter {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px; padding: 20px; margin-bottom: 18px;
-    display: flex; align-items: center; gap: 18px;
+  /* STARS BACKGROUND */
+  .stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .star { position:absolute; background:white; border-radius:50%; animation:twinkle 3s infinite; }
+  @keyframes twinkle { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  /* HEADER */
+  .header {
+    background:var(--navy2);
+    border-bottom:3px solid var(--red);
+    padding:1rem 1.2rem 0.8rem;
+    text-align:center;
+    position:sticky; top:0; z-index:50;
+    box-shadow:0 2px 20px rgba(178,34,52,0.4);
   }
-  .win-text-title { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
-  .win-text-sub { color: #555; font-size: 13px; margin-top: 3px; }
-  .streak-fire { color: #FFD700; margin-left: 10px; }
+  .header-flag { font-size:1rem; letter-spacing:0.15em; margin-bottom:4px; }
+  .header-title { font-family:'Press Start 2P',monospace; font-size:0.75rem; color:var(--gold); letter-spacing:0.05em; text-shadow:2px 2px 0 var(--gold2); line-height:1.6; }
+  .header-sub { font-size:0.6rem; color:var(--muted); letter-spacing:0.2em; text-transform:uppercase; margin-top:4px; font-family:'Press Start 2P',monospace; }
 
-  /* Habit cards */
-  .habit-list { display: flex; flex-direction: column; gap: 11px; }
+  /* TABS */
+  .tabs { display:flex; background:var(--navy2); border-bottom:2px solid var(--border); position:sticky; top:148px; z-index:40; overflow-x:auto; }
+  .tab { flex:1; min-width:55px; padding:0.65rem 0.2rem; text-align:center; font-size:0.6rem; font-weight:500; color:var(--muted); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; font-family:'Press Start 2P',monospace; line-height:1.4; }
+  .tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+
+  /* PAGES */
+  .page { display:none; padding:1rem; position:relative; z-index:1; }
+  .page.active { display:block; }
+
+  /* STREAK HERO */
+  .streak-hero {
+    background:linear-gradient(135deg, var(--navy2), #0d1f3c);
+    border:2px solid var(--red);
+    border-radius:12px;
+    padding:1.5rem 1rem;
+    margin-bottom:1rem;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 4px 30px rgba(178,34,52,0.3);
+  }
+  .streak-hero::before {
+    content:'★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
+    position:absolute; top:8px; left:0; right:0;
+    font-size:0.5rem; color:rgba(255,215,0,0.2);
+    letter-spacing:0.5em; text-align:center;
+  }
+  .streak-hero::after {
+    content:'★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
+    position:absolute; bottom:8px; left:0; right:0;
+    font-size:0.5rem; color:rgba(255,215,0,0.2);
+    letter-spacing:0.5em; text-align:center;
+  }
+  .streak-num { font-family:'Press Start 2P',monospace; font-size:3rem; color:var(--gold); text-shadow:3px 3px 0 var(--gold2), 0 0 30px rgba(255,215,0,0.5); line-height:1; margin-bottom:0.3rem; }
+  .streak-label { font-family:'Press Start 2P',monospace; font-size:0.55rem; color:var(--muted); letter-spacing:0.15em; margin-bottom:1rem; }
+  .progress-track { background:rgba(255,255,255,0.1); border-radius:0; height:12px; overflow:hidden; border:1px solid var(--border); margin-bottom:6px; }
+  .progress-fill { height:100%; background:repeating-linear-gradient(90deg,var(--red) 0px,var(--red) 8px,var(--white) 8px,var(--white) 10px,#003087 10px,#003087 18px,var(--white) 18px,var(--white) 20px); background-size:20px 100%; transition:width 0.6s ease; }
+  .progress-label { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:var(--muted); }
+
+  /* DATE */
+  .date-bar { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:var(--muted); text-align:center; margin-bottom:0.8rem; letter-spacing:0.1em; padding:0.5rem; border:1px solid var(--border); border-radius:6px; background:rgba(255,255,255,0.03); }
+
+  /* STATUS */
+  .day-status { text-align:center; padding:0.7rem; border-radius:6px; margin-bottom:0.8rem; font-family:'Press Start 2P',monospace; font-size:0.55rem; line-height:1.8; border:2px solid; }
+  .day-status.winner { background:rgba(39,174,96,0.1); color:#4ADE80; border-color:#27AE60; }
+  .day-status.inprogress { background:rgba(255,215,0,0.07); color:var(--gold); border-color:var(--gold2); }
+
+  /* HABIT CARDS */
   .habit-card {
-    border-radius: 12px; padding: 18px 20px; cursor: pointer;
-    display: flex; align-items: center; gap: 14px;
-    text-align: left; width: 100%; transition: all 0.22s ease;
-    border: 1px solid rgba(255,255,255,0.07);
-    background: rgba(255,255,255,0.025);
+    background:var(--navy2);
+    border:2px solid var(--border);
+    border-radius:8px;
+    padding:1rem 1.1rem;
+    margin-bottom:0.7rem;
+    display:flex; align-items:center; gap:1rem;
+    cursor:pointer;
+    transition:all 0.15s;
+    user-select:none;
   }
-  .habit-card.done { transform: scale(1.01); }
-  .habit-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
-  .habit-info { flex: 1; }
-  .habit-cat {
-    font-family: Arial, sans-serif; font-size: 9px; letter-spacing: 2px;
-    color: #444; text-transform: uppercase; margin-bottom: 3px; font-weight: 700;
-    transition: color 0.22s;
-  }
-  .habit-q { font-size: 16px; font-weight: 700; color: #888; letter-spacing: -0.2px; transition: color 0.22s; }
-  .habit-card.done .habit-q { color: #F5F0E8; }
-  .habit-check {
-    width: 32px; height: 32px; border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.12);
-    background: transparent;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; transition: all 0.22s ease; font-size: 16px; color: #fff;
-    flex-shrink: 0;
-  }
+  .habit-card:active { transform:scale(0.98); }
+  .habit-card.checked { border-color:var(--green); background:rgba(39,174,96,0.08); }
+  .habit-icon { font-size:1.6rem; flex-shrink:0; }
+  .habit-info { flex:1; }
+  .habit-name { font-family:'Press Start 2P',monospace; font-size:0.6rem; color:var(--white); line-height:1.6; margin-bottom:4px; }
+  .habit-desc { font-size:0.75rem; color:var(--muted); }
+  .habit-check { width:28px; height:28px; border:2px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Press Start 2P',monospace; font-size:0.6rem; transition:all 0.15s; }
+  .habit-card.checked .habit-check { background:var(--green); border-color:var(--green); color:white; }
 
-  /* Week grid */
-  .week-card {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 14px; padding: 22px;
+  /* EMERGENCY */
+  .emergency-btn {
+    width:100%; background:var(--red); color:white; border:3px solid #FF4444;
+    border-radius:8px; padding:1rem; font-family:'Press Start 2P',monospace;
+    font-size:0.6rem; cursor:pointer; display:flex; align-items:center;
+    justify-content:center; gap:0.8rem; margin-bottom:1rem;
+    box-shadow:0 0 20px rgba(178,34,52,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+    line-height:1.6; text-align:center;
+    animation:redpulse 2s infinite;
   }
-  .section-label {
-    font-family: Arial, sans-serif; font-size: 9px; letter-spacing: 2.5px;
-    color: #444; text-transform: uppercase; margin-bottom: 16px; font-weight: 700;
-  }
-  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
-  .week-day { text-align: center; }
-  .week-day-name {
-    font-size: 9px; font-family: Arial, sans-serif;
-    color: #3a3a3a; letter-spacing: 0.5px; margin-bottom: 5px;
-    text-transform: uppercase;
-  }
-  .week-day-name.today { color: #FFD700; font-weight: 700; }
-  .week-cell {
-    height: 44px; border-radius: 8px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.05);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; transition: all 0.3s ease;
-  }
-  .week-cell.today-border { border: 2px solid #FFD700; }
-  .week-cell.gold { background: linear-gradient(135deg, #FFD700, #FFA500); }
-  .week-cell.green { background: #059669; }
-  .week-cell.indigo { background: #4F46E5; }
-  .week-cell.future { background: rgba(255,255,255,0.02); }
-  .legend { margin-top: 18px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #444; }
-  .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+  @keyframes redpulse { 0%,100%{box-shadow:0 0 20px rgba(178,34,52,0.6);} 50%{box-shadow:0 0 35px rgba(178,34,52,0.9);} }
+  .pulse { width:10px; height:10px; border-radius:50%; background:white; animation:pulse 1.5s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(1.4);} }
 
-  /* Weight */
-  .weight-input-row { display: flex; gap: 10px; align-items: center; }
-  .weight-input {
-    flex: 1; background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
-    padding: 12px 16px; color: #F5F0E8;
-    font-size: 18px; font-family: Georgia, serif; font-weight: 700; outline: none;
-  }
-  .weight-unit { color: #444; font-size: 13px; flex-shrink: 0; }
-  .log-btn {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    border: none; border-radius: 8px; padding: 12px 18px;
-    color: #000; font-weight: 900; font-size: 13px;
-    font-family: Arial, sans-serif; cursor: pointer; letter-spacing: 1px; flex-shrink: 0;
-  }
-  .log-btn:active { opacity: 0.82; }
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
-  .stat-card {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 12px; padding: 16px; text-align: center;
-  }
-  .stat-label { font-family: Arial, sans-serif; font-size: 9px; letter-spacing: 2px; color: #444; text-transform: uppercase; margin-bottom: 6px; }
-  .stat-val { font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
-  .stat-unit { font-size: 11px; color: #333; }
-  .history-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .history-row:last-child { border-bottom: none; }
-  .history-date { color: #555; font-size: 13px; }
-  .history-weight { font-weight: 700; font-size: 17px; color: #F5F0E8; }
-  .empty-msg { text-align: center; color: #333; font-size: 14px; font-style: italic; padding: 28px 0; line-height: 1.8; }
+  /* EMERGENCY OVERLAY */
+  .overlay { display:none; position:fixed; inset:0; z-index:200; }
+  .overlay.show { display:flex; flex-direction:column; }
+  .overlay-bg { position:absolute; inset:0; z-index:0; background:var(--red2); }
+  .overlay-bg img { width:100%;height:100%;object-fit:cover;opacity:0.35;position:absolute;inset:0; }
+  .overlay-bg-dim { position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.8)); }
+  .overlay-content { position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem 1.5rem;text-align:center; }
+  .slide-headline { font-family:'Press Start 2P',monospace; font-size:1.4rem; color:var(--gold); text-shadow:3px 3px 0 var(--gold2); line-height:1.6; margin-bottom:1.5rem; white-space:pre-line; }
+  .slide-body { font-size:1rem; color:rgba(255,255,255,0.9); line-height:1.8; max-width:320px; margin-bottom:2rem; }
+  .slide-dots { display:flex;gap:6px;justify-content:center;margin-bottom:1.5rem; }
+  .slide-dot { width:8px;height:8px;border-radius:0;background:rgba(255,255,255,0.2); }
+  .slide-dot.active { background:var(--gold); }
+  .overlay-btn { background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:0.9rem 2rem;font-family:'Press Start 2P',monospace;font-size:0.6rem;cursor:pointer;width:100%;max-width:300px;line-height:1.6; }
+  .overlay-timer { font-family:'Press Start 2P',monospace;font-size:0.5rem;color:rgba(255,255,255,0.3);margin-top:1rem; }
 
-  /* Celebration */
-  .celebration {
-    display: none; position: fixed; inset: 0; z-index: 100;
-    align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.88);
-    animation: fadeIn 0.3s ease;
-  }
-  .celebration.show { display: flex; }
-  .cel-inner { text-align: center; padding: 24px; }
-  .cel-trophy { font-size: 70px; margin-bottom: 12px; }
-  .cel-title {
-    font-size: clamp(26px, 6vw, 50px); font-weight: 900; letter-spacing: -1px;
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1;
-  }
-  .cel-sub { margin-top: 10px; font-size: 17px; color: #888; font-style: italic; }
+  /* LEVEL CLEAR CELEBRATION */
+  .celebration { display:none;position:fixed;inset:0;background:var(--navy);z-index:300;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem; }
+  .celebration.show { display:flex; }
+  .celeb-stage { font-family:'Press Start 2P',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.2em;margin-bottom:0.5rem; }
+  .celeb-art { font-size:4rem;margin:0.5rem 0;animation:jump 0.5s infinite alternate; }
+  @keyframes jump { from{transform:translateY(0);} to{transform:translateY(-12px);} }
+  .celeb-title { font-family:'Press Start 2P',monospace;font-size:1rem;color:var(--gold);text-shadow:3px 3px 0 var(--gold2);line-height:1.6;margin-bottom:0.3rem;animation:blink 0.7s infinite; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+  .celeb-sub { font-family:'Press Start 2P',monospace;font-size:0.6rem;color:var(--red);margin-bottom:1.2rem;line-height:1.8; }
+  .celeb-score { font-family:'Press Start 2P',monospace;font-size:0.7rem;color:var(--white);margin-bottom:0.5rem; }
+  .celeb-lives { font-size:1.2rem;margin-bottom:1rem;letter-spacing:0.3em; }
+  .celeb-msg { font-size:0.88rem;color:rgba(255,255,255,0.7);line-height:1.7;max-width:300px;margin-bottom:1.5rem; }
+  .celeb-divider { width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--red) 0,var(--red) 20px,var(--white) 20px,var(--white) 22px,#003087 22px,#003087 42px,var(--white) 42px,var(--white) 44px);margin-bottom:1.2rem; }
+  .celeb-btn { font-family:'Press Start 2P',monospace;background:var(--gold);color:var(--navy);border:none;padding:0.8rem 1.5rem;font-size:0.6rem;cursor:pointer;border-radius:4px;line-height:1.6; }
+  .celeb-unlocked { background:rgba(255,215,0,0.1);border:1px solid var(--gold2);border-radius:6px;padding:0.7rem;margin-bottom:1rem;font-family:'Press Start 2P',monospace;font-size:0.5rem;color:var(--gold);line-height:1.8; }
 
-  .footer { margin-top: 40px; text-align: center; font-family: Arial, sans-serif; font-size: 10px; letter-spacing: 2.5px; color: #2a2a2a; text-transform: uppercase; font-weight: 700; }
+  /* MEDITATION */
+  .med-overlay { display:none;position:fixed;inset:0;background:linear-gradient(135deg,#0a0a1e,#0d1f3c);z-index:210;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center; }
+  .med-overlay.show { display:flex; }
+  .med-stars { font-size:0.8rem;letter-spacing:0.5em;color:rgba(255,215,0,0.4);margin-bottom:1.5rem; }
+  .med-word { font-family:'Press Start 2P',monospace;font-size:1rem;color:white;line-height:1.8;opacity:0;transition:opacity 0.8s;max-width:280px;text-align:center; }
+  .med-word.visible { opacity:1; }
+  .med-track { width:200px;height:4px;background:rgba(255,255,255,0.1);border-radius:0;margin:2rem auto;overflow:hidden; }
+  .med-fill { height:100%;background:var(--gold);transition:width 0.5s; }
+  .med-close { font-family:'Press Start 2P',monospace;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0.6rem 1.5rem;font-size:0.5rem;cursor:pointer;margin-top:1rem; }
 
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  /* VIDEO CARDS */
+  .video-card { background:var(--navy2);border:2px solid var(--border);border-radius:8px;margin-bottom:0.8rem;overflow:hidden; }
+  .video-thumb { width:100%;aspect-ratio:16/9;background:#000;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden; }
+  .video-thumb video { width:100%;height:100%;object-fit:cover; }
+  .video-play-btn { position:absolute;width:48px;height:48px;border-radius:4px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;border:2px solid rgba(255,255,255,0.3); }
+  .video-info { padding:0.9rem 1rem; }
+  .video-num { font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--red);letter-spacing:0.15em;margin-bottom:4px; }
+  .video-title { font-family:'Press Start 2P',monospace;font-size:0.6rem;color:var(--white);margin-bottom:6px;line-height:1.6; }
+  .video-desc { font-size:0.8rem;color:var(--muted);line-height:1.5;margin-bottom:0.7rem; }
+  .upload-btn { background:var(--red);color:white;border:none;border-radius:4px;padding:0.5rem 1rem;font-family:'Press Start 2P',monospace;font-size:0.45rem;cursor:pointer;line-height:1.6; }
 
-  @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  /* MED CARDS */
+  .med-card { background:linear-gradient(135deg,#0d1f3c,#0a1628);border:2px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.8rem;cursor:pointer;transition:border-color 0.2s; }
+  .med-card.unlocked { border-color:var(--gold2); }
+  .med-card.locked { opacity:0.5;cursor:default; }
+  .med-icon { font-size:1.8rem;flex-shrink:0; }
+  .med-title { font-family:'Press Start 2P',monospace;font-size:0.55rem;color:var(--gold);line-height:1.6;margin-bottom:4px; }
+  .med-desc { font-size:0.78rem;color:var(--muted);line-height:1.5; }
+
+  /* WEEK GRID */
+  .week-day { aspect-ratio:1;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--navy2);border:1px solid var(--border); }
+  .week-day.winner-day { background:rgba(39,174,96,0.12);border-color:var(--green); }
+  .week-day.today { border-color:var(--gold);border-width:2px; }
+  .day-name-lbl { font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted); }
+
+  /* PHOTO */
+  .photo-slot { border:2px dashed var(--border);border-radius:8px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;background:var(--navy2); }
+  .photo-slot img { width:100%;height:100%;object-fit:cover; }
+  .photo-remove { position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);color:white;border:none;border-radius:2px;width:24px;height:24px;font-size:0.8rem;cursor:pointer;display:none;align-items:center;justify-content:center; }
+  .photo-slot.has-photo .photo-remove { display:flex; }
+  .photo-slot.has-photo .photo-placeholder { display:none; }
+
+  /* WEIGHT */
+  .weight-input { background:var(--navy2);border:2px solid var(--border);color:white;border-radius:4px;padding:0.7rem 1rem;font-size:1rem;text-align:center;font-family:inherit;flex:1; }
+  .weight-btn { background:var(--red);color:white;border:none;border-radius:4px;padding:0.7rem 1.2rem;font-family:'Press Start 2P',monospace;font-size:0.5rem;cursor:pointer;line-height:1.4; }
+
+  /* CARD BOX */
+  .card-box { background:var(--navy2);border:2px solid var(--border);border-radius:8px;padding:1.1rem;margin-bottom:0.8rem; }
+
+  /* DEBRIEF */
+  .debrief-toggle { width:100%;background:transparent;border:2px solid var(--border);border-radius:8px;padding:0.7rem 1rem;font-family:"Press Start 2P",monospace;font-size:0.5rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;transition:border-color 0.2s; }
+  .debrief-toggle:hover { border-color:var(--gold2); color:var(--gold); }
+  .debrief-toggle .arrow { transition:transform 0.2s; }
+  .debrief-toggle.open .arrow { transform:rotate(180deg); }
+  .debrief-body { display:none;background:var(--navy2);border:2px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem; }
+  .debrief-body.open { display:block; }
+  .debrief-field { margin-bottom:0.8rem; }
+  .debrief-label { font-family:"Press Start 2P",monospace;font-size:0.42rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.5rem;display:block; }
+  .debrief-input { width:100%;background:var(--navy);border:1px solid var(--border);color:white;border-radius:4px;padding:0.65rem 0.8rem;font-size:0.85rem;font-family:inherit;resize:none;line-height:1.5; }
+  .debrief-input:focus { outline:none;border-color:var(--gold2); }
+  .debrief-save { background:var(--red);color:white;border:none;border-radius:4px;padding:0.55rem 1.1rem;font-family:"Press Start 2P",monospace;font-size:0.42rem;cursor:pointer;margin-top:0.3rem;line-height:1.6; }
+  .debrief-saved { font-family:"Press Start 2P",monospace;font-size:0.42rem;color:var(--green);margin-left:0.5rem;opacity:0;transition:opacity 0.3s; }
+  .debrief-saved.show { opacity:1; }
+
+  /* STRIPE DIVIDER */
+  .stripe { width:100%;height:4px;background:repeating-linear-gradient(90deg,var(--red) 0,var(--red) 20px,var(--white) 20px,var(--white) 22px,#003087 22px,#003087 42px,var(--white) 42px,var(--white) 44px);margin:1rem 0; }
+
+  .section-head { font-family:'Press Start 2P',monospace;font-size:0.55rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.8rem;margin-top:1rem;display:flex;align-items:center;gap:0.5rem; }
+  .section-head::after { content:'';flex:1;height:1px;background:var(--border); }
+
+  /* VIDEO FULLSCREEN */
+  .video-fs { display:none;position:fixed;inset:0;background:#000;z-index:250; }
+  .video-fs.show { display:flex;flex-direction:column; }
+  .video-fs video { width:100%;flex:1;object-fit:contain; }
+  .video-fs-close { position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.15);color:white;border:none;border-radius:2px;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:10; }
 </style>
 </head>
 <body>
-<div class="bg"></div>
 
-<div class="celebration" id="celebration">
-  <div class="cel-inner">
-    <div class="cel-trophy">🏆</div>
-    <div class="cel-title">CHARLES IS A WINNER</div>
-    <div class="cel-sub" id="cel-sub">Perfect day · loading...</div>
+<!-- BACKGROUND STARS -->
+<div class="stars" id="starsContainer"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-flag">🇺🇸 &nbsp;&nbsp;&nbsp; 🇺🇸</div>
+  <div class="header-title">CHARLES IS A WINNER</div>
+  <div class="header-sub">EST. 1776 · 76-DAY CHALLENGE</div>
+</div>
+
+<div class="motd-banner">
+  <div class="motd-label">★ MESSAGE OF THE DAY ★</div>
+  <div class="motd-text" id="motdText">Loading...</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('today',this)">TODAY</div>
+  <div class="tab" onclick="switchTab('week',this)">WEEK</div>
+  <div class="tab" onclick="switchTab('progress',this)">GAINS</div>
+  <div class="tab" onclick="switchTab('coaching',this)">TRAIN</div>
+  <div class="tab" onclick="switchTab('settings',this)">⚙</div>
+</div>
+
+<!-- TODAY -->
+<div class="page active" id="tab-today">
+  <div class="streak-hero">
+    <div class="streak-num" id="streakNum">0</div>
+    <div class="streak-label">DAY STREAK</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">0 OF 76 DAYS</div>
+  </div>
+
+  <div class="date-bar" id="todayDate">LOADING...</div>
+  <div id="dayStatus" class="day-status inprogress">HIT 2 OF 3 TO WIN TODAY</div>
+
+  <div class="habit-card" id="habit-0" onclick="toggleHabit(0)">
+    <div class="habit-icon">😴</div>
+    <div class="habit-info">
+      <div class="habit-name">SLEEP 6-8 HRS</div>
+      <div class="habit-desc">Rest is how warriors recover.</div>
+    </div>
+    <div class="habit-check" id="check-0"></div>
+  </div>
+  <div class="habit-card" id="habit-1" onclick="toggleHabit(1)">
+    <div class="habit-icon">🥗</div>
+    <div class="habit-info">
+      <div class="habit-name">CLEAN FUEL</div>
+      <div class="habit-desc">No junk. Your country needs you strong.</div>
+    </div>
+    <div class="habit-check" id="check-1"></div>
+  </div>
+  <div class="habit-card" id="habit-2" onclick="toggleHabit(2)">
+    <div class="habit-icon">💪</div>
+    <div class="habit-info">
+      <div class="habit-name">EXERCISE</div>
+      <div class="habit-desc">Squats, jump rope, move. No excuses.</div>
+    </div>
+    <div class="habit-check" id="check-2"></div>
+  </div>
+
+  <div class="stripe"></div>
+
+  <button class="emergency-btn" onclick="triggerEmergency()">
+    <div class="pulse"></div>
+    🚨 EMERGENCY — I'M ABOUT TO BREAK
+  </button>
+
+  <div class="stripe"></div>
+
+  <button class="debrief-toggle" id="debriefToggle" onclick="toggleDebrief()">
+    <span>📋 &nbsp;DAILY DEBRIEF</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="debrief-body" id="debriefBody">
+    <div class="debrief-field">
+      <label class="debrief-label">⚡ WIN OF THE DAY</label>
+      <textarea class="debrief-input" id="debriefWin" rows="2" placeholder="What went right today?"></textarea>
+    </div>
+    <div class="debrief-field">
+      <label class="debrief-label">⚠ HARD MOMENT</label>
+      <textarea class="debrief-input" id="debriefHard" rows="2" placeholder="What was tough? What did you learn?"></textarea>
+    </div>
+    <button class="debrief-save" onclick="saveDebrief()">SAVE DEBRIEF</button>
+    <span class="debrief-saved" id="debriefSaved">★ SAVED</span>
   </div>
 </div>
 
-<div class="wrap">
-  <div style="margin-bottom:32px">
-    <div class="badge">Daily Scorecard · Est. 1776</div>
-    <h1>Charles Is A<br><span>Winner.</span></h1>
-    <p class="date" id="today-date"></p>
+<!-- WEEK -->
+<div class="page" id="tab-week">
+  <div class="section-head">THIS WEEK</div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:1rem;" id="weekGrid"></div>
+  <div class="stripe"></div>
+  <div class="section-head">STATS</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.7rem;">
+    <div class="card-box" style="text-align:center;padding:0.8rem;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:1.4rem;color:var(--gold);margin-bottom:4px;" id="statWins">0</div>
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);">WINS</div>
+    </div>
+    <div class="card-box" style="text-align:center;padding:0.8rem;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:1.4rem;color:var(--white);margin-bottom:4px;" id="statBest">0</div>
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);">BEST</div>
+    </div>
+    <div class="card-box" style="text-align:center;padding:0.8rem;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:1.4rem;color:var(--green);margin-bottom:4px;" id="statPct">0%</div>
+      <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);">RATE</div>
+    </div>
   </div>
+</div>
 
-  <!-- Streak Bar -->
-  <div class="streak-bar active" id="streak-bar">
-    <div class="streak-top">
+<!-- PROGRESS / GAINS -->
+<div class="page" id="tab-progress">
+  <div class="section-head">BEFORE & AFTER</div>
+  <div class="card-box">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
       <div>
-        <div class="streak-label active" id="streak-label">🇺🇸 76-Day Habit Lock</div>
-        <div class="streak-title active" id="streak-title">Day 0 of 76</div>
-      </div>
-      <div class="streak-pct active" id="streak-pct">0%</div>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill active" id="progress-fill" style="width:2%"></div>
-    </div>
-    <div class="streak-sub" id="streak-sub">76 days to go — like the Founders, you finish what you start</div>
-  </div>
-
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('today')">Today</button>
-    <button class="tab" onclick="switchTab('week')">This Week</button>
-    <button class="tab" onclick="switchTab('weight')">Weight</button>
-  </div>
-
-  <!-- TODAY TAB -->
-  <div id="tab-today">
-    <div class="win-meter">
-      <div style="position:relative;width:68px;height:68px;flex-shrink:0">
-        <svg width="68" height="68" style="transform:rotate(-90deg)" id="ring-svg">
-          <circle cx="34" cy="34" r="28" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="6"/>
-          <circle id="ring-arc" cx="34" cy="34" r="28" fill="none" stroke="#4F46E5" stroke-width="6"
-            stroke-dasharray="175.93" stroke-dashoffset="175.93" stroke-linecap="round"
-            style="transition:all 0.5s ease"/>
-        </svg>
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;font-family:Arial,sans-serif" id="ring-pct">0%</div>
+        <div class="photo-slot" id="beforeSlot" onclick="document.getElementById('beforeInput').click()">
+          <div class="photo-placeholder" style="text-align:center;padding:1rem;">
+            <div style="font-size:2rem;">📷</div>
+            <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);margin-top:6px;line-height:1.8;">ADD<br>PHOTO</div>
+          </div>
+          <img id="beforeImg" src="" style="display:none;">
+          <button class="photo-remove" onclick="removePhoto('before',event)">✕</button>
+        </div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--muted);text-align:center;margin-top:6px;">BEFORE</div>
+        <input type="file" id="beforeInput" style="display:none;" accept="image/*" onchange="loadPhoto('before',this)">
       </div>
       <div>
-        <div class="win-text-title" id="win-title">Let's get it, Charles</div>
-        <div class="win-text-sub" id="win-sub">0 of 3 habits complete</div>
-      </div>
-    </div>
-
-    <div class="habit-list" id="habit-list"></div>
-  </div>
-
-  <!-- WEEK TAB -->
-  <div id="tab-week" style="display:none">
-    <div class="week-card">
-      <div class="section-label">This Week's W's</div>
-      <div class="week-grid" id="week-grid"></div>
-      <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#FFD700,#FFA500)"></div>Perfect 3/3</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>Strong 2/3</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#4F46E5"></div>Good 1/3</div>
+        <div class="photo-slot" id="afterSlot" onclick="document.getElementById('afterInput').click()">
+          <div class="photo-placeholder" style="text-align:center;padding:1rem;">
+            <div style="font-size:2rem;">🏆</div>
+            <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);margin-top:6px;line-height:1.8;">ADD<br>PHOTO</div>
+          </div>
+          <img id="afterImg" src="" style="display:none;">
+          <button class="photo-remove" onclick="removePhoto('after',event)">✕</button>
+        </div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--muted);text-align:center;margin-top:6px;">AFTER</div>
+        <input type="file" id="afterInput" style="display:none;" accept="image/*" onchange="loadPhoto('after',this)">
       </div>
     </div>
   </div>
-
-  <!-- WEIGHT TAB -->
-  <div id="tab-weight" style="display:none">
-    <div class="week-card" style="margin-bottom:18px">
-      <div class="section-label">Log Today's Weight</div>
-      <div class="weight-input-row">
-        <input type="number" class="weight-input" id="weight-input" placeholder="e.g. 220" />
-        <span class="weight-unit">lbs</span>
-        <button class="log-btn" onclick="saveWeight()">LOG IT</button>
+  <div class="section-head">WEIGHT LOG</div>
+  <div class="card-box">
+    <div style="display:flex;gap:0.7rem;margin-bottom:1rem;">
+      <input type="number" class="weight-input" id="weightInput" placeholder="lbs" step="0.1">
+      <button class="weight-btn" onclick="logWeight()">LOG</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.7rem;margin-bottom:0.8rem;">
+      <div style="text-align:center;">
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.8rem;color:var(--white);margin-bottom:3px;" id="startWeight">—</div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);">START</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.8rem;color:var(--white);margin-bottom:3px;" id="currentWeight">—</div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);">NOW</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.8rem;color:var(--green);margin-bottom:3px;" id="weightChange">—</div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);">CHANGE</div>
       </div>
     </div>
-    <div id="weight-stats"></div>
-    <div id="weight-history"></div>
+    <div id="weightLog" style="max-height:140px;overflow-y:auto;"></div>
   </div>
+</div>
 
-  <div class="footer">— Charles Is A Winner · Est. 1776 —</div>
+<!-- COACHING / TRAIN -->
+<div class="page" id="tab-coaching">
+  <div class="section-head">COACHING VIDEOS</div>
+  <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">All videos unlocked. Film them as you go — upload your recordings here.</div>
+  <div id="videosList"></div>
+  <div class="stripe"></div>
+  <div class="section-head">GUIDED MEDITATIONS</div>
+  <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">Earn meditations by building your streak.</div>
+  <div id="medsList"></div>
+</div>
+
+<!-- SETTINGS -->
+<div class="page" id="tab-settings">
+  <div class="section-head">ANCHOR PHOTO</div>
+  <div class="card-box">
+    <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">Shown during emergencies. Use Buttercup, your goals, or your before photo.</div>
+    <div style="width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--navy);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:0.8rem;cursor:pointer;" onclick="document.getElementById('anchorInput').click()">
+      <div id="anchorPlaceholder" style="text-align:center;"><div style="font-size:2rem;">📸</div><div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted);margin-top:6px;line-height:1.8;">TAP TO CHOOSE</div></div>
+      <img id="anchorThumb" src="" style="display:none;width:100%;height:100%;object-fit:cover;">
+    </div>
+    <input type="file" id="anchorInput" style="display:none;" accept="image/*" onchange="loadAnchorPhoto(this)">
+    <button onclick="document.getElementById('anchorInput').click()" style="background:var(--red);color:white;border:none;border-radius:4px;padding:0.6rem 1.1rem;font-family:'Press Start 2P',monospace;font-size:0.45rem;cursor:pointer;margin-right:0.5rem;line-height:1.6;">CHOOSE</button>
+    <button onclick="removeAnchorPhoto()" style="background:var(--navy2);color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0.6rem 1.1rem;font-family:'Press Start 2P',monospace;font-size:0.45rem;cursor:pointer;line-height:1.6;">REMOVE</button>
+  </div>
+  <div class="section-head">DANGER ZONE</div>
+  <div class="card-box">
+    <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">Reset all data. Start the 76-day challenge fresh.</div>
+    <button onclick="resetAll()" style="background:var(--red2);color:white;border:2px solid var(--red);border-radius:4px;padding:0.7rem 1.4rem;font-family:'Press Start 2P',monospace;font-size:0.45rem;cursor:pointer;line-height:1.6;">RESET CHALLENGE</button>
+  </div>
+</div>
+
+<!-- EMERGENCY OVERLAY -->
+<div class="overlay" id="emergencyOverlay">
+  <div class="overlay-bg">
+    <img id="overlayBgImg" src="" style="display:none;">
+    <div class="overlay-bg-dim"></div>
+  </div>
+  <div class="overlay-content">
+    <div id="slideHeadline" class="slide-headline"></div>
+    <div id="slideBody" class="slide-body"></div>
+    <div class="slide-dots" id="slideDots"></div>
+    <button id="slideNextBtn" class="overlay-btn" onclick="nextSlide()">HOLD STRONG →</button>
+    <button id="slideCloseBtn" class="overlay-btn" style="display:none;" onclick="closeEmergency()">✓ I STAYED STRONG</button>
+    <div class="overlay-timer" id="overlayTimer">3:00</div>
+  </div>
+</div>
+
+<!-- MEDITATION -->
+<div class="med-overlay" id="medOverlay">
+  <div class="med-stars">★ ★ ★ ★ ★</div>
+  <div class="med-word" id="medWord">Breathe.</div>
+  <div class="med-track"><div class="med-fill" id="medFill" style="width:0%"></div></div>
+  <div style="font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--muted);margin-bottom:1rem;" id="medCounter">1 / 1</div>
+  <button class="med-close" onclick="closeMeditation()">END SESSION</button>
+</div>
+
+<!-- LEVEL CLEAR CELEBRATION -->
+<div class="celebration" id="celebrationOverlay">
+  <div class="celeb-stage" id="celebStage">STAGE 1 CLEAR</div>
+  <div class="celeb-art" id="celebArt">🦅</div>
+  <div class="celeb-divider"></div>
+  <div class="celeb-title" id="celebTitle">★ 10 DAYS! ★</div>
+  <div class="celeb-sub" id="celebSub">LEVEL UP!</div>
+  <div class="celeb-score" id="celebScore">SCORE: 10000</div>
+  <div class="celeb-lives" id="celebLives">🌟🌟🌟</div>
+  <div class="celeb-msg" id="celebMsg"></div>
+  <div class="celeb-unlocked" id="celebUnlocked" style="display:none;"></div>
+  <button class="celeb-btn" onclick="closeCelebration()">► PRESS START</button>
+</div>
+
+<!-- VIDEO FULLSCREEN -->
+<div class="video-fs" id="videoFS">
+  <button class="video-fs-close" onclick="closeVideoFS()">✕</button>
+  <video id="fsVideo" controls playsinline></video>
 </div>
 
 <script>
-const HABITS = [
-  { id: "sleep",     icon: "🌙", label: "Sleep",      question: "Did I get 6–8 hours of sleep?", color: "#4F46E5" },
-  { id: "nutrition", icon: "🥗", label: "Clean Fuel", question: "Did I avoid junk food?",        color: "#059669" },
-  { id: "exercise",  icon: "💪", label: "Move",       question: "Did I exercise?",               color: "#DC2626" },
+
+// MOTD — 76 messages rotating daily
+const motdMessages = [
+  "“The harder the conflict, the more glorious the triumph.” — Thomas Paine",
+  "“We must all hang together, or we shall hang separately.” — Benjamin Franklin",
+  "“It does not take a majority to prevail, but rather an irate, tireless minority.” — Samuel Adams",
+  "“Discipline is the bridge between goals and accomplishment.” — Jim Rohn",
+  "“The secret of getting ahead is getting started.” — Mark Twain",
+  "“You are what you repeatedly do. Excellence is a habit.” — Aristotle",
+  "“Do not wait. The time will never be just right.” — Napoleon Hill",
+  "“Strength does not come from the body. It comes from the will of the soul.”",
+  "“The only bad workout is the one that didn’t happen.”",
+  "“Liberty, when it begins to take root, is a plant of rapid growth.” — George Washington",
+  "“Eat to fuel your body, not to feed your emotions.”",
+  "“Every champion was once a contender who refused to give up.” — Rocky Balboa",
+  "“The Constitution only gives people the right to pursue happiness. You have to catch it yourself.” — Franklin",
+  "“You didn’t come this far to only come this far.”",
+  "“Small daily improvements lead to staggering long-term results.”",
+  "“We hold these truths to be self-evident — that you are capable of more than you know.” — Est. 1776",
+  "“The body achieves what the mind believes.”",
+  "“One more rep. One more day. One more win.”",
+  "“Give me liberty, or give me death!” — Patrick Henry",
+  "“Progress, not perfection. Keep moving.”",
+  "“The difference between who you are and who you want to be is what you do today.”",
+  "“Your future self is watching you right now through your memories.”",
+  "“Those who win never quit. Those who quit never win.”",
+  "“Freedom is not free. Neither is the body you want. Both are worth fighting for.”",
+  "“First forget inspiration. Habit is more dependable.” — Octavia Butler",
+  "“Take care of your body. It’s the only place you have to live.” — Jim Rohn",
+  "“The Founders worked 76 days toward independence. You are doing the same.”",
+  "“Motivation gets you started. Habit keeps you going.”",
+  "“It always seems impossible until it’s done.” — Nelson Mandela",
+  "“The groundwork of all happiness is good health.” — Leigh Hunt",
+  "“We the People — and we choose to win today.”",
+  "“Sweat is just fat crying.”",
+  "“The pain you feel today is the strength you’ll feel tomorrow.”",
+  "“America was not built by those who waited.” — Est. 1776",
+  "“Success is the sum of small efforts repeated day in and day out.”",
+  "“Your body can stand almost anything. It’s your mind you have to convince.”",
+  "“Don’t wish for it. Work for it.”",
+  "“The Declaration of Independence was signed. Your habit is being built. Both matter.” — Est. 1776",
+  "“Tough times never last, but tough people do.” — Robert H. Schuller",
+  "“You have the same number of hours in a day as the Founding Fathers.”",
+  "“Never let the fear of striking out keep you from playing the game.”",
+  "“Health is not about the weight you lose, but the life you gain.”",
+  "“If you are going through hell, keep going.” — Winston Churchill",
+  "“Stars and stripes. Grit and discipline. That’s what this is.”",
+  "“Do something today that your future self will thank you for.”",
+  "“An army of principles can penetrate where an army of soldiers cannot.” — Thomas Paine",
+  "“The best project you’ll ever work on is you.”",
+  "“You don’t have to be great to start, but you have to start to be great.”",
+  "“Earned, not given. Every single day.”",
+  "“The republic endures because people chose discipline. So do you.” — Est. 1776",
+  "“Push yourself, because no one else is going to do it for you.”",
+  "“Sleep. Eat clean. Move. Repeat. That’s the whole game.”",
+  "“Champions are made in the moments they want to quit but don’t.”",
+  "“When you feel like quitting, think about why you started.”",
+  "“76 days. The same number that changed a nation. Change yours.”",
+  "“What you eat in private, you wear in public.”",
+  "“Success isn’t owned. It’s rented. Rent is due every day.”",
+  "“The Minutemen didn’t wait for perfect conditions. Neither should you.”",
+  "“Don’t count the days. Make the days count.” — Muhammad Ali",
+  "“A healthy outside starts from the inside.” — Robert Urich",
+  "“Be so good they can’t ignore you.” — Steve Martin",
+  "“Your only limit is your mind.”",
+  "“Rise up. Show up. Win.” — Est. 1776",
+  "“Those who think they have no time for healthy eating will sooner or later have time for illness.”",
+  "“Fall seven times, stand up eight.” — Japanese Proverb",
+  "“Freedom tastes better than any chicken wing ever will.”",
+  "“The greatest wealth is health.” — Virgil",
+  "“Do it for the person you’re becoming, not the person you were.”",
+  "“Hard choices, easy life. Easy choices, hard life.”",
+  "“One nation. One mission. One habit at a time.”",
+  "“You are one workout away from a good mood.”",
+  "“A winner is just a loser who tried one more time.”",
+  "“The Founders signed in ink. You sign with your habits.” — Est. 1776",
+  "“Believe you can and you’re halfway there.” — Theodore Roosevelt",
+  "“Make yourself proud.”",
+  "“76 days of commitment. A lifetime of results.” — Est. 1776",
 ];
-const GOAL = 76;
-const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
-function getTodayKey() { return new Date().toISOString().split("T")[0]; }
-
-function getWeekKeys() {
-  const today = new Date();
-  const day = today.getDay();
-  const monday = new Date(today);
-  monday.setDate(today.getDate() - ((day + 6) % 7));
-  return Array.from({length:7}, (_,i) => {
-    const d = new Date(monday);
-    d.setDate(monday.getDate() + i);
-    return d.toISOString().split("T")[0];
-  });
+function getTodayMotd() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const diff = now - start;
+  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+  return motdMessages[dayOfYear % motdMessages.length];
 }
 
-function getPastKeys(n) {
-  return Array.from({length:n}, (_,i) => {
-    const d = new Date();
-    d.setDate(d.getDate() - (n - 1 - i));
-    return d.toISOString().split("T")[0];
-  });
-}
+document.getElementById('motdText').textContent = getTodayMotd();
 
-function loadData() {
-  try { return JSON.parse(localStorage.getItem("charles_winner") || "{}"); } catch { return {}; }
-}
-function saveData(data) {
-  localStorage.setItem("charles_winner", JSON.stringify(data));
-}
+// Generate stars
+(function(){
+  const c=document.getElementById('starsContainer');
+  for(let i=0;i<60;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const size=Math.random()*2+1;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s;`;
+    c.appendChild(s);
+  }
+})();
 
-let allData = loadData();
-const todayKey = getTodayKey();
-const weekKeys = getWeekKeys();
+// STATE
+let S=JSON.parse(localStorage.getItem('cw76v2')||'{}');
+if(!S.days)S.days={};
+if(!S.weights)S.weights=[];
+if(!S.videos)S.videos={};
+if(!S.celebSeen)S.celebSeen={};
+function save(){localStorage.setItem('cw76v2',JSON.stringify(S));}
 
-// Set date
-document.getElementById("today-date").textContent =
-  new Date().toLocaleDateString("en-US", {weekday:"long", month:"long", day:"numeric"});
+function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function fmtDate(str){return new Date(str).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
+function getDay(k){if(!S.days[k])S.days[k]={habits:[false,false,false],winner:false};return S.days[k];}
 
-// Input enter key
-document.getElementById("weight-input").addEventListener("keydown", e => { if (e.key === "Enter") saveWeight(); });
-
-function getStreak() {
-  const keys = getPastKeys(GOAL);
-  let s = 0;
-  for (let i = keys.length - 1; i >= 0; i--) {
-    const d = allData[keys[i]];
-    if (d && HABITS.every(h => d[h.id])) s++;
+function calcStreak(){
+  let streak=0,d=new Date();
+  for(let i=0;i<200;i++){
+    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    if(S.days[k]&&S.days[k].winner){streak++;d.setDate(d.getDate()-1);}
+    else if(i===0){d.setDate(d.getDate()-1);}
     else break;
   }
-  return s;
+  return streak;
 }
 
-function getTodayData() { return allData[todayKey] || {}; }
-
-function toggle(habitId) {
-  const td = getTodayData();
-  allData = { ...allData, [todayKey]: { ...td, [habitId]: !td[habitId] } };
-  saveData(allData);
-  const newTd = allData[todayKey];
-  if (HABITS.every(h => newTd[h.id])) showCelebration();
-  render();
+function calcConsecWins(){
+  let c=0,d=new Date();
+  for(let i=0;i<200;i++){
+    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    if(S.days[k]&&S.days[k].winner){c++;d.setDate(d.getDate()-1);}
+    else break;
+  }
+  return c;
 }
 
-function showCelebration() {
-  const streak = getStreak();
-  document.getElementById("cel-sub").textContent = `Perfect day · ${streak} of ${GOAL} locked in 🇺🇸`;
-  const el = document.getElementById("celebration");
-  el.classList.add("show");
-  setTimeout(() => el.classList.remove("show"), 3500);
+// TABS
+function switchTab(tab,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(el)el.classList.add('active');
+  if(tab==='week')renderWeek();
+  if(tab==='progress')renderWeight();
+  if(tab==='coaching')renderCoaching();
 }
 
-function switchTab(tab) {
-  ["today","week","weight"].forEach(t => {
-    document.getElementById("tab-" + t).style.display = t === tab ? "block" : "none";
+// HABITS
+function toggleHabit(i){
+  const today=getDay(todayKey());
+  today.habits[i]=!today.habits[i];
+  today.winner=today.habits.filter(Boolean).length>=2;
+  save();renderToday();
+  if(today.winner)checkMilestones();
+}
+
+function renderToday(){
+  const today=getDay(todayKey());
+  const d=new Date();
+  document.getElementById('todayDate').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}).toUpperCase();
+  today.habits.forEach((c,i)=>{
+    const card=document.getElementById('habit-'+i);
+    const chk=document.getElementById('check-'+i);
+    if(c){card.classList.add('checked');chk.textContent='✓';}
+    else{card.classList.remove('checked');chk.textContent='';}
   });
-  document.querySelectorAll(".tab").forEach((btn, i) => {
-    btn.classList.toggle("active", ["today","week","weight"][i] === tab);
-  });
-  if (tab === "weight") renderWeight();
-  if (tab === "week") renderWeek();
+  const checked=today.habits.filter(Boolean).length;
+  const st=document.getElementById('dayStatus');
+  if(today.winner){st.className='day-status winner';st.textContent='★ WINNER DAY! '+checked+'/3 HABITS ★';}
+  else if(checked===0){st.className='day-status inprogress';st.textContent='HIT 2 OF 3 TO WIN TODAY';}
+  else{st.className='day-status inprogress';st.textContent=checked+'/3 — NEED '+(2-checked)+' MORE';}
+  const streak=calcStreak();
+  document.getElementById('streakNum').textContent=streak;
+  document.getElementById('progressFill').style.width=Math.min((streak/76)*100,100)+'%';
+  document.getElementById('progressLabel').textContent=streak+' OF 76 DAYS';
+  // Reload debrief if open
+  if (document.getElementById('debriefBody').classList.contains('open')) loadDebrief();
 }
 
-function saveWeight() {
-  const val = parseFloat(document.getElementById("weight-input").value);
-  if (!val || val < 50 || val > 500) return;
-  const weights = allData.__weights || [];
-  const existing = weights.findIndex(e => e.date === todayKey);
-  const entry = { date: todayKey, weight: val };
-  const updated = existing >= 0
-    ? weights.map((e,i) => i === existing ? entry : e)
-    : [...weights, entry];
-  allData = { ...allData, __weights: updated };
-  saveData(allData);
-  document.getElementById("weight-input").value = "";
+// MILESTONES — each feels like a new NES level
+const milestones=[
+  {day:10,stage:'STAGE 1 CLEAR',art:'🦅',title:'★ 10 DAYS! ★',sub:'THE EAGLE HAS LANDED',score:10000,lives:'🌟🌟🌟',msg:'Ten days. The founders signed the Declaration in less time than that.\n\nYou\'re building something real.',unlock:'MEDITATION UNLOCKED: Morning Winner Mindset'},
+  {day:21,stage:'STAGE 2 CLEAR',art:'🗽',title:'★ 21 DAYS! ★',sub:'HABIT IS FORMING',score:21000,lives:'🌟🌟🌟🌟',msg:'21 days. Science says the habit is forming.\nLiberty isn\'t given. It\'s earned. So is this.',unlock:null},
+  {day:30,stage:'STAGE 3 CLEAR',art:'🏛️',title:'★ 30 DAYS! ★',sub:'ONE MONTH STRONG',score:30000,lives:'🌟🌟🌟🌟🌟',msg:'One month. You are not the same person\nwho started Day 1.\n\nThe founders didn\'t quit either.',unlock:'MEDITATION UNLOCKED: The Winner You\'re Becoming'},
+  {day:50,stage:'STAGE 4 CLEAR',art:'⭐',title:'★ 50 DAYS! ★',sub:'OVER HALFWAY',score:50000,lives:'🌟🌟🌟🌟🌟🌟',msg:'50 days of showing up.\n76 days for independence.\nYou\'re 26 from locking this in forever.',unlock:null},
+  {day:66,stage:'STAGE 5 CLEAR',art:'🔥',title:'★ 66 DAYS! ★',sub:'HABIT LOCKED',score:66000,lives:'🌟🌟🌟🌟🌟🌟🌟',msg:'Research says 66 days locks a habit permanently.\nYou did it.\n10 more for the grand finale.',unlock:'MEDITATION UNLOCKED: The 3-Minute Reset'},
+  {day:76,stage:'★ FINAL STAGE CLEAR ★',art:'🏆',title:'★ 76 DAYS! ★',sub:'CHARLES GRINBAUM — YOU ARE A WINNER. HABIT LOCKED.',score:76000,lives:'🌟🌟🌟🌟🌟🌟🌟🌟',msg:'Est. 1776.\n\n76 days. Independence.\n\nThis is who you are now.\nNot who you were trying to be.\nWho you ARE.',unlock:null},
+];
+
+function checkMilestones(){
+  const streak=calcStreak();
+  const m=milestones.find(m=>m.day===streak&&!S.celebSeen[m.day]);
+  if(m){
+    S.celebSeen[m.day]=true;save();
+    document.getElementById('celebStage').textContent=m.stage;
+    document.getElementById('celebArt').textContent=m.art;
+    document.getElementById('celebTitle').textContent=m.title;
+    document.getElementById('celebSub').textContent=m.sub;
+    document.getElementById('celebScore').textContent='SCORE: '+m.score.toLocaleString();
+    document.getElementById('celebLives').textContent=m.lives;
+    document.getElementById('celebMsg').textContent=m.msg;
+    const unlockEl=document.getElementById('celebUnlocked');
+    if(m.unlock){unlockEl.textContent='★ '+m.unlock+' ★';unlockEl.style.display='block';}
+    else{unlockEl.style.display='none';}
+    document.getElementById('celebrationOverlay').classList.add('show');
+  }
+}
+
+function closeCelebration(){document.getElementById('celebrationOverlay').classList.remove('show');}
+
+// EMERGENCY
+const slides=[
+  {h:'STOP.',b:'You\'re about to make a decision your future self will regret.\n\nYou have 3 minutes. Just 3 minutes.'},
+  {h:'REMEMBER\nWHY.',b:'ClearDesk AI is real. Your transformation is real.\n\nEvery choice right now is a vote for who you\'re becoming.'},
+  {h:'THE BATTLE\nIS 3 MINS.',b:'Walk to a different aisle. Get water. The craving will pass.\n\nIt always does. You know this.'},
+  {h:'TOO FAR\nTO QUIT.',b:'The founders didn\'t quit when it was hard.\n\nThat food doesn\'t love you back. Walk away.'},
+  {h:'YOU ARE\nA WINNER.',b:'Not someday. Right now.\n\nThis moment — choosing to walk away — is exactly what winners do.\n\nGo.'},
+];
+let curSlide=0,emerTimer=null;
+
+function renderSlide(){
+  const s=slides[curSlide];
+  document.getElementById('slideHeadline').textContent=s.h;
+  document.getElementById('slideBody').textContent=s.b;
+  document.getElementById('slideDots').innerHTML=slides.map((_,i)=>'<div class="slide-dot'+(i===curSlide?' active':'')+'"></div>').join('');
+  const last=curSlide===slides.length-1;
+  document.getElementById('slideNextBtn').style.display=last?'none':'block';
+  document.getElementById('slideCloseBtn').style.display=last?'block':'none';
+}
+
+function nextSlide(){if(curSlide<slides.length-1){curSlide++;renderSlide();}}
+
+function triggerEmergency(){
+  curSlide=0;
+  const img=document.getElementById('overlayBgImg');
+  const src=S.anchorPhoto||S.beforePhoto||'';
+  if(src){img.src=src;img.style.display='block';}
+  else{img.style.display='none';}
+  renderSlide();
+  document.getElementById('emergencyOverlay').classList.add('show');
+  let secs=180;clearInterval(emerTimer);
+  emerTimer=setInterval(()=>{
+    secs--;
+    const m=Math.floor(secs/60),sc=secs%60;
+    document.getElementById('overlayTimer').textContent=m+':'+(sc<10?'0':'')+sc;
+    if(secs<=0)clearInterval(emerTimer);
+  },1000);
+}
+
+function closeEmergency(){clearInterval(emerTimer);document.getElementById('emergencyOverlay').classList.remove('show');}
+
+// MEDITATIONS
+const medsConfig=[
+  {id:'med1',title:'MORNING WINNER MINDSET',desc:'2-min morning reset. Start from strength.',reqConsec:3,
+   words:['Close your eyes.','Take a deep breath.','You are Charles Grinbaum.','You built something real.','You show up every day.','Today is no different.','You will eat clean.','You will move your body.','You will protect your sleep.','Not because you have to.','Because you decided.','Open your eyes.','Go win today.','★ WE THE PEOPLE ★']},
+  {id:'med2',title:'THE 3-MINUTE RESET',desc:'Emergency reset for your mind. Use it anywhere.',reqStreak:66,
+   words:['Stop what you\'re doing.','Breathe in for 4.','Hold for 4.','Breathe out for 4.','The craving is temporary.','Your goals are permanent.','You\'ve beaten this before.','You\'ll beat it again.','You are stronger than this.','The battle lasts 3 minutes.','Choose the person you\'re becoming.','Walk away.','You\'re a winner.']},
+  {id:'med3',title:'THE WINNER YOU\'RE BECOMING',desc:'A deeper visualization. Earned at Day 30.',reqStreak:30,
+   words:['Sit somewhere quiet.','Picture yourself at Day 76.','Your body has changed.','Your habits are locked in.','Your business is growing.','People see you differently.','Because you ARE different.','You did something hard.','Every single day.','You didn\'t quit.','That person is already inside you.','They\'re just waiting for you','to keep showing up.','Est. 1776.','Go be that person.']},
+];
+
+function renderCoaching(){renderVideos();renderMeds();}
+
+const videosConfig=[
+  {id:'v0',emoji:'🥊',title:'WIN THE 3-MIN BATTLE',desc:'What to do in the exact moment temptation strikes. The most important video.'},
+  {id:'v1',emoji:'🏠',title:'BUILD YOUR WINNER ENV',desc:'Set up your home so success is the path of least resistance.'},
+  {id:'v2',emoji:'🛒',title:'SHOP LIKE A WINNER',desc:'The grocery list and store strategy that eliminates bad decisions.'},
+  {id:'v3',emoji:'🥗',title:'EAT FULL, NOT FAT',desc:'Stay satisfied on clean food. The foods that fill you up and fuel you.'},
+  {id:'v4',emoji:'💪',title:'THE ONLY WORKOUT',desc:'Body for Life principles. Time-efficient transformation. No excuses.'},
+  {id:'v5',emoji:'🧠',title:'REWRITE YOUR STORY',desc:'The self-belief shift that makes everything else permanent.'},
+];
+
+function renderVideos(){
+  const container=document.getElementById('videosList');
+  if(!container)return;
+  container.innerHTML='';
+  videosConfig.forEach((v,idx)=>{
+    const hasVideo=S.videos[v.id];
+    const card=document.createElement('div');
+    card.className='video-card';
+    let thumbHtml='';
+    if(hasVideo){
+      thumbHtml=`<div class="video-thumb" onclick="playVideoFS('${v.id}')">
+        <video src="${S.videos[v.id]}" muted playsinline></video>
+        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
+          <div class="video-play-btn">▶</div>
+        </div>
+      </div>`;
+    } else {
+      thumbHtml=`<div class="video-thumb" style="cursor:default;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+          <div style="font-size:2.5rem;">${v.emoji}</div>
+          <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:rgba(255,255,255,0.3);">UPLOAD VIDEO</div>
+        </div>
+      </div>`;
+    }
+    card.innerHTML=thumbHtml+`
+      <div class="video-info">
+        <div class="video-num">VIDEO ${idx+1} OF ${videosConfig.length}</div>
+        <div class="video-title">${v.title}</div>
+        <div class="video-desc">${v.desc}</div>
+        <button class="upload-btn" onclick="document.getElementById('vup_${v.id}').click()">${hasVideo?'↺ REPLACE':'+ UPLOAD'}</button>
+        <input type="file" id="vup_${v.id}" style="display:none;" accept="video/*" onchange="uploadVideo('${v.id}',this)">
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+function uploadVideo(id,input){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>80*1024*1024){alert('Keep video under 80MB.');return;}
+  const r=new FileReader();
+  r.onload=e=>{S.videos[id]=e.target.result;save();renderVideos();};
+  r.readAsDataURL(file);
+}
+
+function playVideoFS(id){
+  const src=S.videos[id];if(!src)return;
+  document.getElementById('fsVideo').src=src;
+  document.getElementById('videoFS').classList.add('show');
+  document.getElementById('fsVideo').play();
+}
+
+function closeVideoFS(){
+  document.getElementById('fsVideo').pause();
+  document.getElementById('fsVideo').src='';
+  document.getElementById('videoFS').classList.remove('show');
+}
+
+function renderMeds(){
+  const container=document.getElementById('medsList');
+  if(!container)return;
+  container.innerHTML='';
+  const streak=calcStreak(),consec=calcConsecWins();
+  medsConfig.forEach(m=>{
+    let unlocked=(m.reqConsec&&consec>=m.reqConsec)||(m.reqStreak&&streak>=m.reqStreak);
+    const card=document.createElement('div');
+    card.className='med-card'+(unlocked?' unlocked':' locked');
+    if(unlocked)card.onclick=()=>startMeditation(m.id);
+    const lockMsg=m.reqConsec?`Win ${m.reqConsec} days in a row to unlock`:`Reach a ${m.reqStreak}-day streak to unlock`;
+    card.innerHTML=`<div class="med-icon">${unlocked?'🧘':'🔒'}</div>
+      <div><div class="med-title">${m.title}</div><div class="med-desc">${unlocked?m.desc:lockMsg}</div></div>`;
+    container.appendChild(card);
+  });
+}
+
+let medInterval=null;
+function startMeditation(id){
+  const m=medsConfig.find(x=>x.id===id);if(!m)return;
+  document.getElementById('medOverlay').classList.add('show');
+  let i=0;
+  const wordEl=document.getElementById('medWord'),fillEl=document.getElementById('medFill'),countEl=document.getElementById('medCounter');
+  function show(){
+    wordEl.classList.remove('visible');
+    setTimeout(()=>{
+      if(i>=m.words.length){closeMeditation();return;}
+      wordEl.textContent=m.words[i];
+      fillEl.style.width=((i+1)/m.words.length*100)+'%';
+      countEl.textContent=(i+1)+' / '+m.words.length;
+      wordEl.classList.add('visible');
+      i++;
+    },400);
+  }
+  show();medInterval=setInterval(show,3200);
+}
+
+function closeMeditation(){clearInterval(medInterval);document.getElementById('medOverlay').classList.remove('show');}
+
+function renderWeek(){
+  const grid=document.getElementById('weekGrid');
+  grid.innerHTML='';
+  const days=['SU','MO','TU','WE','TH','FR','SA'];
+  const today=new Date(),sow=new Date(today);
+  sow.setDate(today.getDate()-today.getDay());
+  for(let i=0;i<7;i++){
+    const d=new Date(sow);d.setDate(sow.getDate()+i);
+    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    const data=S.days[k],isToday=k===todayKey();
+    const div=document.createElement('div');
+    div.className='week-day'+(data?.winner?' winner-day':'')+(isToday?' today':'');
+    div.innerHTML=`<div class="day-name-lbl">${days[d.getDay()]}</div><div style="font-size:${data?.winner?'0.9rem':'0.65rem'};color:${data?.winner?'var(--green)':'var(--muted)'};">${data?.winner?'★':d.getDate()}</div>`;
+    grid.appendChild(div);
+  }
+  const allDays=Object.values(S.days),wins=allDays.filter(d=>d.winner).length;
+  document.getElementById('statWins').textContent=wins;
+  document.getElementById('statBest').textContent=calcStreak();
+  document.getElementById('statPct').textContent=allDays.length>0?Math.round(wins/allDays.length*100)+'%':'0%';
+}
+
+function logWeight(){
+  const v=parseFloat(document.getElementById('weightInput').value);
+  if(!v)return;
+  S.weights.push({date:todayKey(),weight:v});save();
+  document.getElementById('weightInput').value='';
   renderWeight();
 }
 
-function renderStreak() {
-  const streak = getStreak();
-  const pct = Math.min(100, Math.round(streak / GOAL * 100));
-  const done = streak >= GOAL;
-  const bar = document.getElementById("streak-bar");
-  const label = document.getElementById("streak-label");
-  const title = document.getElementById("streak-title");
-  const pctEl = document.getElementById("streak-pct");
-  const fill = document.getElementById("progress-fill");
-  const sub = document.getElementById("streak-sub");
-
-  bar.className = "streak-bar " + (done ? "complete" : "active");
-  label.className = "streak-label " + (done ? "complete" : "active");
-  title.className = "streak-title " + (done ? "complete" : "active");
-  pctEl.className = "streak-pct " + (done ? "complete" : "active");
-  fill.className = "progress-fill " + (done ? "complete" : "active");
-
-  title.textContent = done ? "HABIT LOCKED. YOU WIN." : `Day ${streak} of ${GOAL}`;
-  pctEl.textContent = pct + "%";
-  fill.style.width = Math.max(pct, 2) + "%";
-  sub.textContent = done ? "" : `${GOAL - streak} days to go — like the Founders, you finish what you start`;
-  sub.style.display = done ? "none" : "block";
+function renderWeight(){
+  if(!S.weights.length)return;
+  const first=S.weights[0].weight,last=S.weights[S.weights.length-1].weight,change=last-first;
+  document.getElementById('startWeight').textContent=first;
+  document.getElementById('currentWeight').textContent=last;
+  const cel=document.getElementById('weightChange');
+  cel.textContent=(change>0?'+':'')+change.toFixed(1);
+  cel.style.color=change<=0?'var(--green)':'var(--red)';
+  document.getElementById('weightLog').innerHTML=[...S.weights].reverse().slice(0,8).map(w=>`<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.78rem;color:var(--muted);"><span>${new Date(w.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><strong style="color:white;">${w.weight} lbs</strong></div>`).join('');
 }
 
-function renderToday() {
-  const td = getTodayData();
-  const score = HABITS.filter(h => td[h.id]).length;
-  const pct = Math.round(score / HABITS.length * 100);
-  const circ = 2 * Math.PI * 28;
-
-  // Ring
-  const arc = document.getElementById("ring-arc");
-  arc.style.strokeDashoffset = circ * (1 - pct / 100);
-  arc.style.stroke = pct === 100 ? "#FFD700" : pct >= 66 ? "#059669" : "#4F46E5";
-  document.getElementById("ring-pct").textContent = pct + "%";
-
-  // Win text
-  const streak = getStreak();
-  document.getElementById("win-title").textContent =
-    pct === 100 ? "Perfect Day! 🏆" : pct >= 66 ? "Strong showing" : pct >= 33 ? "Keep going" : "Let's get it, Charles";
-  document.getElementById("win-sub").innerHTML =
-    `${score} of ${HABITS.length} habits complete` +
-    (streak > 0 ? `<span class="streak-fire">🔥 ${streak}-day streak</span>` : "");
-
-  // Habit cards
-  const list = document.getElementById("habit-list");
-  list.innerHTML = "";
-  HABITS.forEach(habit => {
-    const done = !!td[habit.id];
-    const card = document.createElement("button");
-    card.className = "habit-card" + (done ? " done" : "");
-    card.style.background = done ? `linear-gradient(135deg, ${habit.color}1a, ${habit.color}08)` : "rgba(255,255,255,0.025)";
-    card.style.borderColor = done ? habit.color : "rgba(255,255,255,0.07)";
-    card.innerHTML = `
-      <span class="habit-icon">${habit.icon}</span>
-      <div class="habit-info">
-        <div class="habit-cat" style="color:${done ? habit.color : "#444"}">${habit.label}</div>
-        <div class="habit-q" style="color:${done ? "#F5F0E8" : "#888"}">${habit.question}</div>
-      </div>
-      <div class="habit-check" style="border-color:${done ? habit.color : "rgba(255,255,255,0.12)"};background:${done ? habit.color : "transparent"}">${done ? "✓" : ""}</div>
-    `;
-    card.onclick = () => toggle(habit.id);
-    list.appendChild(card);
-  });
+function loadPhoto(type,input){
+  const file=input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    document.getElementById(type+'Img').src=e.target.result;
+    document.getElementById(type+'Img').style.display='block';
+    document.getElementById(type+'Slot').classList.add('has-photo');
+    S[type+'Photo']=e.target.result;save();
+  };r.readAsDataURL(file);
 }
 
-function renderWeek() {
-  const grid = document.getElementById("week-grid");
-  grid.innerHTML = "";
-  weekKeys.forEach((key, i) => {
-    const dayData = allData[key] || {};
-    const score = HABITS.filter(h => dayData[h.id]).length;
-    const isToday = key === todayKey;
-    const isPast = key < todayKey;
-    const isFuture = key > todayKey;
-
-    let cellClass = "week-cell";
-    if (isToday) cellClass += " today-border";
-    if (!isFuture) {
-      if (score === 3) cellClass += " gold";
-      else if (score === 2) cellClass += " green";
-      else if (score === 1) cellClass += " indigo";
-      else if (isFuture) cellClass += " future";
-    } else {
-      cellClass += " future";
-    }
-
-    const emoji = isFuture ? "" : score === 3 ? "🏆" : score === 2 ? "✓✓" : score === 1 ? "✓" : isPast ? "·" : "";
-
-    grid.innerHTML += `
-      <div class="week-day">
-        <div class="week-day-name${isToday ? " today" : ""}">${DAYS[i]}</div>
-        <div class="${cellClass}">${emoji}</div>
-      </div>
-    `;
-  });
+function removePhoto(type,e){
+  e.stopPropagation();
+  document.getElementById(type+'Img').src='';
+  document.getElementById(type+'Img').style.display='none';
+  document.getElementById(type+'Slot').classList.remove('has-photo');
+  delete S[type+'Photo'];save();
 }
 
-function renderWeight() {
-  const weights = allData.__weights || [];
-  const statsEl = document.getElementById("weight-stats");
-  const histEl = document.getElementById("weight-history");
-
-  if (weights.length === 0) {
-    statsEl.innerHTML = "";
-    histEl.innerHTML = `<div class="empty-msg">Log your first weigh-in above.<br>Every number is just a starting point.</div>`;
-    return;
-  }
-
-  const start = weights[0].weight;
-  const latest = weights[weights.length - 1].weight;
-  const delta = (latest - start).toFixed(1);
-  const deltaColor = parseFloat(delta) <= 0 ? "#059669" : "#DC2626";
-
-  statsEl.innerHTML = `
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-label">Starting</div>
-        <div class="stat-val" style="color:#555">${start}</div>
-        <div class="stat-unit">lbs</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Current</div>
-        <div class="stat-val" style="color:#FFD700">${latest}</div>
-        <div class="stat-unit">lbs</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Change</div>
-        <div class="stat-val" style="color:${deltaColor}">${parseFloat(delta) > 0 ? "+" : ""}${delta}</div>
-        <div class="stat-unit">lbs</div>
-      </div>
-    </div>
-  `;
-
-  const rows = [...weights].reverse().slice(0, 10).map(entry => {
-    const d = new Date(entry.date + "T12:00:00");
-    const label = d.toLocaleDateString("en-US", {weekday:"short", month:"short", day:"numeric"});
-    return `<div class="history-row"><span class="history-date">${label}</span><span class="history-weight">${entry.weight} lbs</span></div>`;
-  }).join("");
-
-  histEl.innerHTML = `<div class="week-card"><div class="section-label">Weight History</div>${rows}</div>`;
+function loadAnchorPhoto(input){
+  const file=input.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    S.anchorPhoto=e.target.result;save();
+    document.getElementById('anchorThumb').src=e.target.result;
+    document.getElementById('anchorThumb').style.display='block';
+    document.getElementById('anchorPlaceholder').style.display='none';
+  };r.readAsDataURL(file);
 }
 
-function render() {
-  renderStreak();
-  renderToday();
+function removeAnchorPhoto(){
+  delete S.anchorPhoto;save();
+  document.getElementById('anchorThumb').src='';
+  document.getElementById('anchorThumb').style.display='none';
+  document.getElementById('anchorPlaceholder').style.display='block';
 }
 
-render();
+function resetAll(){if(confirm('Reset all data?')){localStorage.removeItem('cw76v2');location.reload();}}
+
+// DEBRIEF
+function toggleDebrief() {
+  const toggle = document.getElementById('debriefToggle');
+  const body = document.getElementById('debriefBody');
+  toggle.classList.toggle('open');
+  body.classList.toggle('open');
+  if (body.classList.contains('open')) loadDebrief();
+}
+
+function loadDebrief() {
+  const key = todayKey();
+  const entry = S.days[key] || {};
+  document.getElementById('debriefWin').value = entry.win || '';
+  document.getElementById('debriefHard').value = entry.hard || '';
+}
+
+function saveDebrief() {
+  const key = todayKey();
+  if (!S.days[key]) S.days[key] = { habits:[false,false,false], winner:false };
+  S.days[key].win = document.getElementById('debriefWin').value.trim();
+  S.days[key].hard = document.getElementById('debriefHard').value.trim();
+  save();
+  const saved = document.getElementById('debriefSaved');
+  saved.classList.add('show');
+  setTimeout(() => saved.classList.remove('show'), 2000);
+}
+
+// INIT
+if(S.anchorPhoto){document.getElementById('anchorThumb').src=S.anchorPhoto;document.getElementById('anchorThumb').style.display='block';document.getElementById('anchorPlaceholder').style.display='none';}
+if(S.beforePhoto){document.getElementById('beforeImg').src=S.beforePhoto;document.getElementById('beforeImg').style.display='block';document.getElementById('beforeSlot').classList.add('has-photo');}
+if(S.afterPhoto){document.getElementById('afterImg').src=S.afterPhoto;document.getElementById('afterImg').style.display='block';document.getElementById('afterSlot').classList.add('has-photo');}
+renderToday();
 </script>
 </body>
 </html>
