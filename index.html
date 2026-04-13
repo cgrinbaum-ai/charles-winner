@@ -26,10 +26,8 @@
   html { background:var(--navy); }
   body { background:var(--navy); color:var(--white); font-family:'DM Sans',system-ui,sans-serif; max-width:480px; margin:0 auto; min-height:100vh; }
 
-  /* PIXEL FONT HELPER */
   .pixel { font-family:'Press Start 2P', monospace; }
 
-  /* MOTD BANNER */
   .motd-banner {
     background:linear-gradient(90deg, var(--red2), #6B0000, var(--red2));
     border-bottom:2px solid var(--gold2);
@@ -43,12 +41,10 @@
   .motd-label { font-family:'Press Start 2P',monospace; font-size:0.38rem; color:rgba(255,215,0,0.5); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:3px; }
   .motd-text { font-family:'Press Start 2P',monospace; font-size:0.48rem; color:var(--gold); line-height:1.8; letter-spacing:0.03em; }
 
-  /* STARS BACKGROUND */
   .stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
   .star { position:absolute; background:white; border-radius:50%; animation:twinkle 3s infinite; }
   @keyframes twinkle { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
 
-  /* HEADER */
   .header {
     background:var(--navy2);
     border-bottom:3px solid var(--red);
@@ -61,16 +57,13 @@
   .header-title { font-family:'Press Start 2P',monospace; font-size:0.75rem; color:var(--gold); letter-spacing:0.05em; text-shadow:2px 2px 0 var(--gold2); line-height:1.6; }
   .header-sub { font-size:0.6rem; color:var(--muted); letter-spacing:0.2em; text-transform:uppercase; margin-top:4px; font-family:'Press Start 2P',monospace; }
 
-  /* TABS */
   .tabs { display:flex; background:var(--navy2); border-bottom:2px solid var(--border); position:sticky; top:148px; z-index:40; overflow-x:auto; }
   .tab { flex:1; min-width:55px; padding:0.65rem 0.2rem; text-align:center; font-size:0.6rem; font-weight:500; color:var(--muted); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; font-family:'Press Start 2P',monospace; line-height:1.4; }
   .tab.active { color:var(--gold); border-bottom-color:var(--gold); }
 
-  /* PAGES */
   .page { display:none; padding:1rem; position:relative; z-index:1; }
   .page.active { display:block; }
 
-  /* STREAK HERO */
   .streak-hero {
     background:linear-gradient(135deg, var(--navy2), #0d1f3c);
     border:2px solid var(--red);
@@ -100,15 +93,12 @@
   .progress-fill { height:100%; background:repeating-linear-gradient(90deg,var(--red) 0px,var(--red) 8px,var(--white) 8px,var(--white) 10px,#003087 10px,#003087 18px,var(--white) 18px,var(--white) 20px); background-size:20px 100%; transition:width 0.6s ease; }
   .progress-label { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:var(--muted); }
 
-  /* DATE */
   .date-bar { font-family:'Press Start 2P',monospace; font-size:0.5rem; color:var(--muted); text-align:center; margin-bottom:0.8rem; letter-spacing:0.1em; padding:0.5rem; border:1px solid var(--border); border-radius:6px; background:rgba(255,255,255,0.03); }
 
-  /* STATUS */
   .day-status { text-align:center; padding:0.7rem; border-radius:6px; margin-bottom:0.8rem; font-family:'Press Start 2P',monospace; font-size:0.55rem; line-height:1.8; border:2px solid; }
   .day-status.winner { background:rgba(39,174,96,0.1); color:#4ADE80; border-color:#27AE60; }
   .day-status.inprogress { background:rgba(255,215,0,0.07); color:var(--gold); border-color:var(--gold2); }
 
-  /* HABIT CARDS */
   .habit-card {
     background:var(--navy2);
     border:2px solid var(--border);
@@ -129,7 +119,6 @@
   .habit-check { width:28px; height:28px; border:2px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Press Start 2P',monospace; font-size:0.6rem; transition:all 0.15s; }
   .habit-card.checked .habit-check { background:var(--green); border-color:var(--green); color:white; }
 
-  /* EMERGENCY */
   .emergency-btn {
     width:100%; background:var(--red); color:white; border:3px solid #FF4444;
     border-radius:8px; padding:1rem; font-family:'Press Start 2P',monospace;
@@ -143,7 +132,6 @@
   .pulse { width:10px; height:10px; border-radius:50%; background:white; animation:pulse 1.5s infinite; flex-shrink:0; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(1.4);} }
 
-  /* EMERGENCY OVERLAY */
   .overlay { display:none; position:fixed; inset:0; z-index:200; }
   .overlay.show { display:flex; flex-direction:column; }
   .overlay-bg { position:absolute; inset:0; z-index:0; background:var(--red2); }
@@ -158,7 +146,6 @@
   .overlay-btn { background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:0.9rem 2rem;font-family:'Press Start 2P',monospace;font-size:0.6rem;cursor:pointer;width:100%;max-width:300px;line-height:1.6; }
   .overlay-timer { font-family:'Press Start 2P',monospace;font-size:0.5rem;color:rgba(255,255,255,0.3);margin-top:1rem; }
 
-  /* LEVEL CLEAR CELEBRATION */
   .celebration { display:none;position:fixed;inset:0;background:var(--navy);z-index:300;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem; }
   .celebration.show { display:flex; }
   .celeb-stage { font-family:'Press Start 2P',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.2em;margin-bottom:0.5rem; }
@@ -174,7 +161,6 @@
   .celeb-btn { font-family:'Press Start 2P',monospace;background:var(--gold);color:var(--navy);border:none;padding:0.8rem 1.5rem;font-size:0.6rem;cursor:pointer;border-radius:4px;line-height:1.6; }
   .celeb-unlocked { background:rgba(255,215,0,0.1);border:1px solid var(--gold2);border-radius:6px;padding:0.7rem;margin-bottom:1rem;font-family:'Press Start 2P',monospace;font-size:0.5rem;color:var(--gold);line-height:1.8; }
 
-  /* MEDITATION */
   .med-overlay { display:none;position:fixed;inset:0;background:linear-gradient(135deg,#0a0a1e,#0d1f3c);z-index:210;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center; }
   .med-overlay.show { display:flex; }
   .med-stars { font-size:0.8rem;letter-spacing:0.5em;color:rgba(255,215,0,0.4);margin-bottom:1.5rem; }
@@ -184,18 +170,6 @@
   .med-fill { height:100%;background:var(--gold);transition:width 0.5s; }
   .med-close { font-family:'Press Start 2P',monospace;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0.6rem 1.5rem;font-size:0.5rem;cursor:pointer;margin-top:1rem; }
 
-  /* VIDEO CARDS */
-  .video-card { background:var(--navy2);border:2px solid var(--border);border-radius:8px;margin-bottom:0.8rem;overflow:hidden; }
-  .video-thumb { width:100%;aspect-ratio:16/9;background:#000;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden; }
-  .video-thumb video { width:100%;height:100%;object-fit:cover; }
-  .video-play-btn { position:absolute;width:48px;height:48px;border-radius:4px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;border:2px solid rgba(255,255,255,0.3); }
-  .video-info { padding:0.9rem 1rem; }
-  .video-num { font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--red);letter-spacing:0.15em;margin-bottom:4px; }
-  .video-title { font-family:'Press Start 2P',monospace;font-size:0.6rem;color:var(--white);margin-bottom:6px;line-height:1.6; }
-  .video-desc { font-size:0.8rem;color:var(--muted);line-height:1.5;margin-bottom:0.7rem; }
-  .upload-btn { background:var(--red);color:white;border:none;border-radius:4px;padding:0.5rem 1rem;font-family:'Press Start 2P',monospace;font-size:0.45rem;cursor:pointer;line-height:1.6; }
-
-  /* MED CARDS */
   .med-card { background:linear-gradient(135deg,#0d1f3c,#0a1628);border:2px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.8rem;cursor:pointer;transition:border-color 0.2s; }
   .med-card.unlocked { border-color:var(--gold2); }
   .med-card.locked { opacity:0.5;cursor:default; }
@@ -203,27 +177,22 @@
   .med-title { font-family:'Press Start 2P',monospace;font-size:0.55rem;color:var(--gold);line-height:1.6;margin-bottom:4px; }
   .med-desc { font-size:0.78rem;color:var(--muted);line-height:1.5; }
 
-  /* WEEK GRID */
   .week-day { aspect-ratio:1;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--navy2);border:1px solid var(--border); }
   .week-day.winner-day { background:rgba(39,174,96,0.12);border-color:var(--green); }
   .week-day.today { border-color:var(--gold);border-width:2px; }
   .day-name-lbl { font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--muted); }
 
-  /* PHOTO */
   .photo-slot { border:2px dashed var(--border);border-radius:8px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;background:var(--navy2); }
   .photo-slot img { width:100%;height:100%;object-fit:cover; }
   .photo-remove { position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);color:white;border:none;border-radius:2px;width:24px;height:24px;font-size:0.8rem;cursor:pointer;display:none;align-items:center;justify-content:center; }
   .photo-slot.has-photo .photo-remove { display:flex; }
   .photo-slot.has-photo .photo-placeholder { display:none; }
 
-  /* WEIGHT */
   .weight-input { background:var(--navy2);border:2px solid var(--border);color:white;border-radius:4px;padding:0.7rem 1rem;font-size:1rem;text-align:center;font-family:inherit;flex:1; }
   .weight-btn { background:var(--red);color:white;border:none;border-radius:4px;padding:0.7rem 1.2rem;font-family:'Press Start 2P',monospace;font-size:0.5rem;cursor:pointer;line-height:1.4; }
 
-  /* CARD BOX */
   .card-box { background:var(--navy2);border:2px solid var(--border);border-radius:8px;padding:1.1rem;margin-bottom:0.8rem; }
 
-  /* DEBRIEF */
   .debrief-toggle { width:100%;background:transparent;border:2px solid var(--border);border-radius:8px;padding:0.7rem 1rem;font-family:"Press Start 2P",monospace;font-size:0.5rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;transition:border-color 0.2s; }
   .debrief-toggle:hover { border-color:var(--gold2); color:var(--gold); }
   .debrief-toggle .arrow { transition:transform 0.2s; }
@@ -238,25 +207,270 @@
   .debrief-saved { font-family:"Press Start 2P",monospace;font-size:0.42rem;color:var(--green);margin-left:0.5rem;opacity:0;transition:opacity 0.3s; }
   .debrief-saved.show { opacity:1; }
 
-  /* STRIPE DIVIDER */
   .stripe { width:100%;height:4px;background:repeating-linear-gradient(90deg,var(--red) 0,var(--red) 20px,var(--white) 20px,var(--white) 22px,#003087 22px,#003087 42px,var(--white) 42px,var(--white) 44px);margin:1rem 0; }
 
   .section-head { font-family:'Press Start 2P',monospace;font-size:0.55rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.8rem;margin-top:1rem;display:flex;align-items:center;gap:0.5rem; }
   .section-head::after { content:'';flex:1;height:1px;background:var(--border); }
 
-  /* VIDEO FULLSCREEN */
-  .video-fs { display:none;position:fixed;inset:0;background:#000;z-index:250; }
-  .video-fs.show { display:flex;flex-direction:column; }
-  .video-fs video { width:100%;flex:1;object-fit:contain; }
-  .video-fs-close { position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.15);color:white;border:none;border-radius:2px;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:10; }
+  /* FOOD LOG */
+  .food-entry {
+    background:var(--navy);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:0.8rem;
+    margin-bottom:0.6rem;
+    display:flex;
+    gap:0.7rem;
+    align-items:flex-start;
+  }
+  .food-entry-thumb {
+    width:56px;
+    height:56px;
+    border-radius:6px;
+    object-fit:cover;
+    flex-shrink:0;
+    border:1px solid var(--border);
+  }
+  .food-entry-thumb-placeholder {
+    width:56px;
+    height:56px;
+    border-radius:6px;
+    background:var(--navy2);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+    flex-shrink:0;
+  }
+  .food-entry-info { flex:1; min-width:0; }
+  .food-entry-name { font-size:0.85rem; color:var(--white); font-weight:500; margin-bottom:2px; word-break:break-word; }
+  .food-entry-cal { font-family:'Press Start 2P',monospace; font-size:0.45rem; color:var(--gold); margin-bottom:3px; }
+  .food-entry-time { font-size:0.7rem; color:var(--muted); }
+  .food-entry-delete { background:none; border:none; color:var(--muted); font-size:1rem; cursor:pointer; flex-shrink:0; padding:2px 4px; }
+  .food-entry-delete:hover { color:var(--red); }
+
+  .food-add-btn {
+    width:100%;
+    background:var(--navy2);
+    border:2px dashed var(--border);
+    border-radius:8px;
+    padding:0.9rem;
+    color:var(--muted);
+    font-family:'Press Start 2P',monospace;
+    font-size:0.5rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.6rem;
+    transition:border-color 0.2s, color 0.2s;
+    margin-bottom:0.8rem;
+    line-height:1.6;
+  }
+  .food-add-btn:hover { border-color:var(--gold2); color:var(--gold); }
+
+  .calorie-total-bar {
+    background:linear-gradient(135deg,var(--navy2),#0d1f3c);
+    border:2px solid var(--border);
+    border-radius:8px;
+    padding:0.9rem 1rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:0.8rem;
+  }
+  .calorie-total-label { font-family:'Press Start 2P',monospace; font-size:0.45rem; color:var(--muted); line-height:1.8; }
+  .calorie-total-num { font-family:'Press Start 2P',monospace; font-size:1.1rem; color:var(--gold); }
+
+  /* FOOD MODAL */
+  .food-modal {
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:180;
+    background:rgba(0,0,0,0.85);
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+  }
+  .food-modal.show { display:flex; }
+  .food-modal-inner {
+    background:var(--navy2);
+    border:2px solid var(--border);
+    border-radius:16px 16px 0 0;
+    padding:1.2rem;
+    width:100%;
+    max-width:480px;
+  }
+  .food-modal-title { font-family:'Press Start 2P',monospace; font-size:0.55rem; color:var(--gold); margin-bottom:1rem; text-align:center; line-height:1.8; }
+  .food-photo-preview {
+    width:100%;
+    height:180px;
+    background:var(--navy);
+    border:2px dashed var(--border);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:0.8rem;
+    overflow:hidden;
+    cursor:pointer;
+    position:relative;
+  }
+  .food-photo-preview img { width:100%; height:100%; object-fit:cover; }
+  .food-photo-preview-label { font-family:'Press Start 2P',monospace; font-size:0.45rem; color:var(--muted); text-align:center; line-height:2; }
+  .food-modal-row { display:flex; gap:0.6rem; margin-bottom:0.7rem; }
+  .food-name-input {
+    flex:1;
+    background:var(--navy);
+    border:2px solid var(--border);
+    color:white;
+    border-radius:6px;
+    padding:0.65rem 0.8rem;
+    font-size:0.9rem;
+    font-family:inherit;
+  }
+  .food-name-input:focus { outline:none; border-color:var(--gold2); }
+  .food-cal-input {
+    width:90px;
+    background:var(--navy);
+    border:2px solid var(--border);
+    color:white;
+    border-radius:6px;
+    padding:0.65rem 0.8rem;
+    font-size:0.9rem;
+    font-family:inherit;
+    text-align:center;
+  }
+  .food-cal-input:focus { outline:none; border-color:var(--gold2); }
+  .ai-analyze-btn {
+    width:100%;
+    background:linear-gradient(135deg,#1a3a6b,#0d1f3c);
+    border:2px solid var(--light-blue);
+    color:var(--white);
+    border-radius:6px;
+    padding:0.65rem;
+    font-family:'Press Start 2P',monospace;
+    font-size:0.45rem;
+    cursor:pointer;
+    margin-bottom:0.7rem;
+    line-height:1.8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.5rem;
+    transition:border-color 0.2s;
+  }
+  .ai-analyze-btn:hover { border-color:#5a9cf5; }
+  .ai-analyze-btn:disabled { opacity:0.5; cursor:not-allowed; }
+  .ai-result {
+    background:rgba(58,107,196,0.1);
+    border:1px solid var(--light-blue);
+    border-radius:6px;
+    padding:0.6rem 0.8rem;
+    font-size:0.78rem;
+    color:rgba(255,255,255,0.85);
+    line-height:1.6;
+    margin-bottom:0.7rem;
+    display:none;
+  }
+  .ai-result.show { display:block; }
+  .food-modal-actions { display:flex; gap:0.6rem; }
+  .food-modal-save {
+    flex:1;
+    background:var(--green);
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:0.8rem;
+    font-family:'Press Start 2P',monospace;
+    font-size:0.5rem;
+    cursor:pointer;
+    line-height:1.6;
+  }
+  .food-modal-cancel {
+    background:var(--navy);
+    color:var(--muted);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:0.8rem 1rem;
+    font-family:'Press Start 2P',monospace;
+    font-size:0.5rem;
+    cursor:pointer;
+    line-height:1.6;
+  }
+
+  /* WORKOUT PHOTO LOG */
+  .workout-photo-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0.7rem;
+    margin-bottom:0.8rem;
+  }
+  .workout-photo-card {
+    background:var(--navy2);
+    border:2px solid var(--border);
+    border-radius:8px;
+    overflow:hidden;
+    position:relative;
+  }
+  .workout-photo-card img {
+    width:100%;
+    aspect-ratio:1;
+    object-fit:cover;
+    display:block;
+  }
+  .workout-photo-card-info {
+    padding:0.5rem 0.6rem;
+  }
+  .workout-photo-date {
+    font-family:'Press Start 2P',monospace;
+    font-size:0.38rem;
+    color:var(--muted);
+    line-height:1.8;
+  }
+  .workout-photo-delete {
+    position:absolute;
+    top:5px;
+    right:5px;
+    background:rgba(0,0,0,0.7);
+    color:white;
+    border:none;
+    border-radius:2px;
+    width:22px;
+    height:22px;
+    font-size:0.75rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .workout-add-btn {
+    width:100%;
+    background:var(--navy2);
+    border:2px dashed var(--border);
+    border-radius:8px;
+    padding:1rem;
+    color:var(--muted);
+    font-family:'Press Start 2P',monospace;
+    font-size:0.5rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.6rem;
+    transition:border-color 0.2s, color 0.2s;
+    margin-bottom:0.8rem;
+    line-height:1.6;
+  }
+  .workout-add-btn:hover { border-color:var(--red); color:var(--red); }
 </style>
 </head>
 <body>
 
-<!-- BACKGROUND STARS -->
 <div class="stars" id="starsContainer"></div>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-flag">🇺🇸 &nbsp;&nbsp;&nbsp; 🇺🇸</div>
   <div class="header-title">CHARLES IS A WINNER</div>
@@ -312,6 +526,17 @@
     </div>
     <div class="habit-check" id="check-2"></div>
   </div>
+
+  <div class="stripe"></div>
+
+  <!-- FOOD LOG -->
+  <div class="section-head">🍽️ TODAY'S FUEL LOG</div>
+  <div class="calorie-total-bar">
+    <div class="calorie-total-label">TOTAL CALS<br>TODAY</div>
+    <div class="calorie-total-num" id="calTotalDisplay">0</div>
+  </div>
+  <div id="foodEntriesList"></div>
+  <button class="food-add-btn" onclick="openFoodModal()">📷 &nbsp;LOG A MEAL</button>
 
   <div class="stripe"></div>
 
@@ -393,6 +618,14 @@
       </div>
     </div>
   </div>
+
+  <!-- WORKOUT PHOTOS -->
+  <div class="section-head">💪 WORKOUT PHOTOS</div>
+  <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">Drop a photo after each session. Stack your evidence.</div>
+  <button class="workout-add-btn" onclick="document.getElementById('workoutPhotoInput').click()">📸 &nbsp;LOG WORKOUT PHOTO</button>
+  <input type="file" id="workoutPhotoInput" style="display:none;" accept="image/*" onchange="addWorkoutPhoto(this)">
+  <div class="workout-photo-grid" id="workoutPhotoGrid"></div>
+
   <div class="section-head">WEIGHT LOG</div>
   <div class="card-box">
     <div style="display:flex;gap:0.7rem;margin-bottom:1rem;">
@@ -419,10 +652,6 @@
 
 <!-- COACHING / TRAIN -->
 <div class="page" id="tab-coaching">
-  <div class="section-head">COACHING VIDEOS</div>
-  <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">All videos unlocked. Film them as you go — upload your recordings here.</div>
-  <div id="videosList"></div>
-  <div class="stripe"></div>
   <div class="section-head">GUIDED MEDITATIONS</div>
   <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">Earn meditations by building your streak.</div>
   <div id="medsList"></div>
@@ -445,6 +674,30 @@
   <div class="card-box">
     <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.8rem;line-height:1.6;">Reset all data. Start the 76-day challenge fresh.</div>
     <button onclick="resetAll()" style="background:var(--red2);color:white;border:2px solid var(--red);border-radius:4px;padding:0.7rem 1.4rem;font-family:'Press Start 2P',monospace;font-size:0.45rem;cursor:pointer;line-height:1.6;">RESET CHALLENGE</button>
+  </div>
+</div>
+
+<!-- FOOD LOG MODAL -->
+<div class="food-modal" id="foodModal">
+  <div class="food-modal-inner">
+    <div class="food-modal-title">📷 LOG A MEAL</div>
+    <div class="food-photo-preview" id="foodPhotoPreview" onclick="document.getElementById('foodPhotoInput').click()">
+      <div class="food-photo-preview-label" id="foodPhotoLabel">TAP TO<br>TAKE / UPLOAD<br>A PHOTO</div>
+      <img id="foodPhotoImg" src="" style="display:none;width:100%;height:100%;object-fit:cover;">
+    </div>
+    <input type="file" id="foodPhotoInput" style="display:none;" accept="image/*" onchange="previewFoodPhoto(this)">
+    <button class="ai-analyze-btn" id="aiAnalyzeBtn" onclick="analyzeFood()" disabled>
+      <span id="aiAnalyzeBtnText">🤖 &nbsp;ANALYZE PHOTO FOR CALORIES</span>
+    </button>
+    <div class="ai-result" id="aiResult"></div>
+    <div class="food-modal-row">
+      <input type="text" class="food-name-input" id="foodNameInput" placeholder="What did you eat?">
+      <input type="number" class="food-cal-input" id="foodCalInput" placeholder="cals">
+    </div>
+    <div class="food-modal-actions">
+      <button class="food-modal-cancel" onclick="closeFoodModal()">CANCEL</button>
+      <button class="food-modal-save" onclick="saveFoodEntry()">✓ &nbsp;SAVE</button>
+    </div>
   </div>
 </div>
 
@@ -487,471 +740,274 @@
   <button class="celeb-btn" onclick="closeCelebration()">► PRESS START</button>
 </div>
 
-<!-- VIDEO FULLSCREEN -->
-<div class="video-fs" id="videoFS">
-  <button class="video-fs-close" onclick="closeVideoFS()">✕</button>
-  <video id="fsVideo" controls playsinline></video>
-</div>
-
 <script>
-
-// MOTD — 76 messages rotating daily
+// MOTD
 const motdMessages = [
-  "“The harder the conflict, the more glorious the triumph.” — Thomas Paine",
-  "“We must all hang together, or we shall hang separately.” — Benjamin Franklin",
-  "“It does not take a majority to prevail, but rather an irate, tireless minority.” — Samuel Adams",
-  "“Discipline is the bridge between goals and accomplishment.” — Jim Rohn",
-  "“The secret of getting ahead is getting started.” — Mark Twain",
-  "“You are what you repeatedly do. Excellence is a habit.” — Aristotle",
-  "“Do not wait. The time will never be just right.” — Napoleon Hill",
-  "“Strength does not come from the body. It comes from the will of the soul.”",
-  "“The only bad workout is the one that didn’t happen.”",
-  "“Liberty, when it begins to take root, is a plant of rapid growth.” — George Washington",
-  "“Eat to fuel your body, not to feed your emotions.”",
-  "“Every champion was once a contender who refused to give up.” — Rocky Balboa",
-  "“The Constitution only gives people the right to pursue happiness. You have to catch it yourself.” — Franklin",
-  "“You didn’t come this far to only come this far.”",
-  "“Small daily improvements lead to staggering long-term results.”",
-  "“We hold these truths to be self-evident — that you are capable of more than you know.” — Est. 1776",
-  "“The body achieves what the mind believes.”",
-  "“One more rep. One more day. One more win.”",
-  "“Give me liberty, or give me death!” — Patrick Henry",
-  "“Progress, not perfection. Keep moving.”",
-  "“The difference between who you are and who you want to be is what you do today.”",
-  "“Your future self is watching you right now through your memories.”",
-  "“Those who win never quit. Those who quit never win.”",
-  "“Freedom is not free. Neither is the body you want. Both are worth fighting for.”",
-  "“First forget inspiration. Habit is more dependable.” — Octavia Butler",
-  "“Take care of your body. It’s the only place you have to live.” — Jim Rohn",
-  "“The Founders worked 76 days toward independence. You are doing the same.”",
-  "“Motivation gets you started. Habit keeps you going.”",
-  "“It always seems impossible until it’s done.” — Nelson Mandela",
-  "“The groundwork of all happiness is good health.” — Leigh Hunt",
-  "“We the People — and we choose to win today.”",
-  "“Sweat is just fat crying.”",
-  "“The pain you feel today is the strength you’ll feel tomorrow.”",
-  "“America was not built by those who waited.” — Est. 1776",
-  "“Success is the sum of small efforts repeated day in and day out.”",
-  "“Your body can stand almost anything. It’s your mind you have to convince.”",
-  "“Don’t wish for it. Work for it.”",
-  "“The Declaration of Independence was signed. Your habit is being built. Both matter.” — Est. 1776",
-  "“Tough times never last, but tough people do.” — Robert H. Schuller",
-  "“You have the same number of hours in a day as the Founding Fathers.”",
-  "“Never let the fear of striking out keep you from playing the game.”",
-  "“Health is not about the weight you lose, but the life you gain.”",
-  "“If you are going through hell, keep going.” — Winston Churchill",
-  "“Stars and stripes. Grit and discipline. That’s what this is.”",
-  "“Do something today that your future self will thank you for.”",
-  "“An army of principles can penetrate where an army of soldiers cannot.” — Thomas Paine",
-  "“The best project you’ll ever work on is you.”",
-  "“You don’t have to be great to start, but you have to start to be great.”",
-  "“Earned, not given. Every single day.”",
-  "“The republic endures because people chose discipline. So do you.” — Est. 1776",
-  "“Push yourself, because no one else is going to do it for you.”",
-  "“Sleep. Eat clean. Move. Repeat. That’s the whole game.”",
-  "“Champions are made in the moments they want to quit but don’t.”",
-  "“When you feel like quitting, think about why you started.”",
-  "“76 days. The same number that changed a nation. Change yours.”",
-  "“What you eat in private, you wear in public.”",
-  "“Success isn’t owned. It’s rented. Rent is due every day.”",
-  "“The Minutemen didn’t wait for perfect conditions. Neither should you.”",
-  "“Don’t count the days. Make the days count.” — Muhammad Ali",
-  "“A healthy outside starts from the inside.” — Robert Urich",
-  "“Be so good they can’t ignore you.” — Steve Martin",
-  "“Your only limit is your mind.”",
-  "“Rise up. Show up. Win.” — Est. 1776",
-  "“Those who think they have no time for healthy eating will sooner or later have time for illness.”",
-  "“Fall seven times, stand up eight.” — Japanese Proverb",
-  "“Freedom tastes better than any chicken wing ever will.”",
-  "“The greatest wealth is health.” — Virgil",
-  "“Do it for the person you’re becoming, not the person you were.”",
-  "“Hard choices, easy life. Easy choices, hard life.”",
-  "“One nation. One mission. One habit at a time.”",
-  "“You are one workout away from a good mood.”",
-  "“A winner is just a loser who tried one more time.”",
-  "“The Founders signed in ink. You sign with your habits.” — Est. 1776",
-  "“Believe you can and you’re halfway there.” — Theodore Roosevelt",
-  "“Make yourself proud.”",
-  "“76 days of commitment. A lifetime of results.” — Est. 1776",
+  // ★ MACHO MAN RANDY SAVAGE ★
+  '"The cream rises to the top, OH YEAH! Are you rising today, Charles?" — Macho Man Randy Savage',
+  '"I\'m the tower of power, too sweet to be sour — and so are you on Day ${streak}. OH YEAH!" — Macho Man',
+  '"Dig it! Every day you show up is a championship defense. OH YEAH!" — Macho Man Randy Savage',
+  '"Be a man! Do the work! OH YEAH!" — Macho Man Randy Savage',
+  '"The Macho Man didn\'t take days off. SNAP INTO IT!" — Randy Savage',
+  '"Ohhh YEAH! The madness is the mission. Own it today." — Macho Man',
+
+  // ★ HULK HOGAN ★
+  '"Whatcha gonna do, brother, when Hulkamania and discipline run wild on YOU?" — Hulk Hogan',
+  '"Train, say your prayers, eat your vitamins, brother — that\'s the Hulkster\'s code." — Hulk Hogan',
+  '"Every true champion trains when nobody\'s watching, brother." — Hulk Hogan',
+  '"Hulkamania is about never giving up, brother. 76 days. Run wild." — Hulk Hogan',
+  '"You gotta believe in yourself when nobody else does, dude." — Hulk Hogan',
+
+  // ★ VINCE McMAHON ★
+  '"Winners win. It\'s that simple. Now get out there." — Vince McMahon',
+  '"You\'re either building your legacy or watching someone else build theirs." — Vince McMahon',
+  '"Nobody handed me anything. Nobody\'s handing you anything. Go take it." — Vince McMahon',
+  '"The difference between ordinary and extraordinary is that little extra." — Vince McMahon',
+
+  // ★ JFK ★
+  '"Ask not what your body can do for you — ask what you can do for your body." — JFK (adapted)',
+  '"We choose to do these things not because they are easy, but because they are hard." — John F. Kennedy',
+  '"Efforts and courage are not enough without purpose and direction." — JFK',
+  '"The time to repair the roof is when the sun is shining." — John F. Kennedy',
+  '"Do not pray for easy lives. Pray to be stronger men." — JFK',
+  '"Physical fitness is not only one of the most important keys to a healthy body, it is the basis of dynamic and creative intellectual activity." — JFK',
+
+  // ★ ELON MUSK ★
+  '"If you\'re trying to create a company, it\'s like baking a cake. You have to have all the ingredients." — Elon Musk',
+  '"When something is important enough, you do it even if the odds are not in your favor." — Elon Musk',
+  '"Persistence is very important. You should not give up unless you are forced to." — Elon Musk',
+  '"Work like hell. If you put in 80-hour weeks, the wins will come." — Elon Musk',
+  '"I think it\'s possible for ordinary people to choose to be extraordinary." — Elon Musk',
+  '"The first step is to establish that something is possible; then probability will occur." — Elon Musk',
+
+  // ★ ARNOLD SCHWARZENEGGER ★
+  '"You can have results or excuses. Not both." — Arnold Schwarzenegger',
+  '"The last three or four reps is what makes the muscle grow. Pain is the dividing line between champion and not." — Arnold',
+  '"Strength does not come from winning. Your struggles develop your strengths." — Arnold Schwarzenegger',
+  '"The mind is the limit. As long as the mind can envision the fact that you can do something, you can do it." — Arnold',
+  '"Bodybuilding is much like any other sport. To be successful, you must dedicate yourself to it." — Arnold',
+  '"Don\'t be afraid to fail. You can\'t always win, but don\'t be afraid of making decisions." — Arnold Schwarzenegger',
+  '"I\'ll be back. To the gym, to the clean eating, to the grind. Every single day." — Arnold (adapted)',
+
+  // ★ DON CORLEONE ★
+  '"A man who doesn\'t spend time on his health can never be a man of respect." — Don Corleone (adapted)',
+  '"Great men are not born great — they grow great through discipline." — The Godfather',
+  '"Never hate your enemies. It affects your judgment. Stay clear-headed. Stay clean." — Don Corleone',
+  '"Leave the gun. Take the salad." — The Godfather (adapted)',
+  '"I\'m gonna make him an offer he can\'t refuse — and today\'s offer is: skip the junk food." — Don Corleone',
+
+  // ★ JACK LaLANNE ★
+  '"Exercise is king, nutrition is queen. Put them together and you\'ve got a kingdom." — Jack LaLanne',
+  '"Your health is your wealth." — Jack LaLanne',
+  '"The only way you can hurt the body is not use it. Inactivity is the killer." — Jack LaLanne',
+  '"I can\'t die. It would ruin my image." — Jack LaLanne',
+  '"How do you feel when you overeat or eat junk? Terrible. So why do it?" — Jack LaLanne',
+  '"Do — don\'t stew." — Jack LaLanne',
+  '"First we inspire them, then we perspire them." — Jack LaLanne',
+  '"Dying is easy. Living is a pain in the butt. It\'s easy to die. It\'s hard to stay healthy." — Jack LaLanne',
+
+  // ★ HE-MAN ★
+  '"I HAVE THE POWER! And so do you, Charles. Go use it." — He-Man, Master of the Universe',
+  '"By the power of Grayskull — this workout IS happening." — He-Man',
+  '"The most powerful man in the universe doesn\'t skip leg day." — He-Man',
+  '"Evil never rests. Neither does a winner\'s discipline." — He-Man, Masters of the Universe',
+  '"I have the power — the power to choose clean food over junk. So do you." — He-Man',
+
+  // ★ WARREN BUFFETT ★
+  '"Someone is sitting in the shade today because someone planted a tree long ago. Plant your habits NOW." — Warren Buffett',
+  '"The best investment you can make is in yourself." — Warren Buffett',
+  '"It takes 20 years to build a reputation and 5 minutes to ruin it. Your body works the same way." — Warren Buffett (adapted)',
+  '"I don\'t look to jump over 7-foot bars. I look around for 1-foot bars that I can step over." — Warren Buffett',
+  '"You only have to do a very few things right in your life so long as you don\'t do too many wrong things." — Warren Buffett',
+  '"Chains of habit are too light to be felt until they are too heavy to be broken." — Warren Buffett',
+
+  // ★ CHARLIE MUNGER ★
+  '"All I want to know is where I\'m going to die, so I\'ll never go there." — Charlie Munger',
+  '"Show me the incentive and I\'ll show you the outcome. Incentivize yourself to win every day." — Charlie Munger',
+  '"Invert, always invert. Don\'t ask how to get fit — ask how to STOP getting unfit." — Charlie Munger',
+  '"The best thing a human being can do is to help another human being know more. Starting with yourself." — Charlie Munger',
+  '"I have nothing to add." — Charlie Munger (but you do — another rep, another clean meal)',
+  '"Take a simple idea and take it seriously." — Charlie Munger. Simple idea: show up daily.',
+
+  // ★ THE SMURFS ★
+  '"La la la la la la, sing a happy song — and eat clean while you\'re at it." — The Smurfs',
+  '"Papa Smurf didn\'t build the village in a day. He built it one smurf at a time." — The Smurfs',
+  '"Even Brainy Smurf knows: you can\'t out-think a bad diet." — The Smurfs',
+  '"Smurfette didn\'t wait for motivation. She just smurfed it." — The Smurfs',
+  '"What would Papa Smurf do? He\'d drink the water, skip the Gargamel junk food, and WIN." — The Smurfs',
+
+  // ★ GREAT PRESIDENTS ★
+  '"The harder the conflict, the more glorious the triumph." — Thomas Paine',
+  '"Liberty, when it begins to take root, is a plant of rapid growth." — George Washington',
+  '"Do you want to know who you are? Don\'t ask. Act. Action will delineate and define you." — Thomas Jefferson',
+  '"Nearly all men can stand adversity, but if you want to test a man\'s character, give him power — over his habits." — Abraham Lincoln (adapted)',
+  '"The only man who never makes mistakes is the man who never does anything." — Theodore Roosevelt',
+  '"Believe you can and you\'re halfway there." — Theodore Roosevelt',
+  '"Do what you can, with what you have, where you are." — Theodore Roosevelt',
+  '"Far and away the best prize that life has to offer is the chance to work hard at work worth doing." — Teddy Roosevelt',
+  '"We the People — and we choose to win today."',
+  '"Give me liberty, or give me death!" — Patrick Henry',
+  '"Ask not what your country can do for you — ask what you can do for yourself today." — JFK (adapted)',
+  '"The Constitution only gives people the right to pursue happiness. You have to catch it yourself." — Ben Franklin',
+  '"We must all hang together, or we shall hang separately." — Benjamin Franklin',
+  '"It does not take a majority to prevail — but rather an irate, tireless minority keen to set brushfires of freedom." — Samuel Adams',
+  '"An investment in knowledge pays the best interest." — Benjamin Franklin',
+  '"The harder I work, the luckier I get." — Samuel Goldwyn',
+  '"I walk slowly, but I never walk backward." — Abraham Lincoln',
+  '"Give me six hours to chop down a tree and I will spend the first four sharpening the axe." — Abraham Lincoln',
+
+  // ★ WAR HEROES ★
+  '"Courage is not the absence of fear, but the judgment that something else is more important than fear." — Ambrose Redmoon',
+  '"In war, there are no unwounded soldiers." — José Narosky. In fitness, no one gets strong without effort.',
+  '"The supreme quality of leadership is unquestionably integrity." — Dwight D. Eisenhower',
+  '"I have not yet begun to fight!" — John Paul Jones',
+  '"We shall fight on the beaches, we shall fight on the landing grounds — we shall never surrender." — Winston Churchill',
+  '"If you are going through hell, keep going." — Winston Churchill',
+  '"Success is not final, failure is not fatal: it is the courage to continue that counts." — Winston Churchill',
+  '"Never give in, never give in, never, never, never." — Winston Churchill',
+  '"The soldier above all others prays for peace, for it is the soldier who must suffer the deepest wounds of war." — Douglas MacArthur',
+  '"Age wrinkles the body. Quitting wrinkles the soul." — Douglas MacArthur',
+  '"A good plan, violently executed now, is better than a perfect plan next week." — George S. Patton',
+  '"Accept the challenges so that you can feel the exhilaration of victory." — George S. Patton',
+  '"If everyone is thinking alike, then somebody isn\'t thinking." — George S. Patton',
+  '"No bastard ever won a war by dying for his country. He won it by making the other bastard diet." — Patton (adapted)',
+  '"We sleep safely at night because rough men stand ready to visit violence on those who would harm us." — George Orwell',
+  '"Uncommon valor was a common virtue." — Admiral Chester Nimitz',
+  '"It is fatal to enter any war without the will to win it." — Douglas MacArthur',
+  '"Duty, Honor, Country." — Douglas MacArthur',
+
+  // ★ ORIGINALS ★
+  '"Discipline is the bridge between goals and accomplishment." — Jim Rohn',
+  '"You are what you repeatedly do. Excellence is a habit." — Aristotle',
+  '"Take care of your body. It\'s the only place you have to live." — Jim Rohn',
+  '"The Founders worked 76 days toward independence. You are doing the same." — Est. 1776',
+  '"Motivation gets you started. Habit keeps you going."',
+  '"The body achieves what the mind believes."',
+  '"What you eat in private, you wear in public."',
+  '"Sleep. Eat clean. Move. Repeat. That\'s the whole game."',
+  '"76 days. The same number that changed a nation. Change yours." — Est. 1776',
+  '"Hard choices, easy life. Easy choices, hard life."',
+  '"Make yourself proud."',
+  '"Earned, not given. Every single day." — Est. 1776',
 ];
 
 function getTodayMotd() {
   const now = new Date();
   const start = new Date(now.getFullYear(), 0, 0);
-  const diff = now - start;
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const dayOfYear = Math.floor((now - start) / 86400000);
   return motdMessages[dayOfYear % motdMessages.length];
 }
-
 document.getElementById('motdText').textContent = getTodayMotd();
 
-// Generate stars
+// STARS
 (function(){
-  const c=document.getElementById('starsContainer');
-  for(let i=0;i<60;i++){
-    const s=document.createElement('div');
-    s.className='star';
-    const size=Math.random()*2+1;
-    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s;`;
+  const c = document.getElementById('starsContainer');
+  for(let i = 0; i < 60; i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 1;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s;`;
     c.appendChild(s);
   }
 })();
 
 // STATE
-let S=JSON.parse(localStorage.getItem('cw76v2')||'{}');
-if(!S.days)S.days={};
-if(!S.weights)S.weights=[];
-if(!S.videos)S.videos={};
-if(!S.celebSeen)S.celebSeen={};
-function save(){localStorage.setItem('cw76v2',JSON.stringify(S));}
+let S = JSON.parse(localStorage.getItem('cw76v2') || '{}');
+if(!S.days) S.days = {};
+if(!S.weights) S.weights = [];
+if(!S.celebSeen) S.celebSeen = {};
+if(!S.workoutPhotos) S.workoutPhotos = [];
+// Migrate old videos key if present
+if(!S.food) S.food = {};
 
-function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
-function fmtDate(str){return new Date(str).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});}
-function getDay(k){if(!S.days[k])S.days[k]={habits:[false,false,false],winner:false};return S.days[k];}
+function save() { localStorage.setItem('cw76v2', JSON.stringify(S)); }
 
-function calcStreak(){
-  let streak=0,d=new Date();
-  for(let i=0;i<200;i++){
-    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-    if(S.days[k]&&S.days[k].winner){streak++;d.setDate(d.getDate()-1);}
-    else if(i===0){d.setDate(d.getDate()-1);}
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+}
+
+function getDay(k) {
+  if(!S.days[k]) S.days[k] = { habits:[false,false,false], winner:false };
+  return S.days[k];
+}
+
+function calcStreak() {
+  let streak = 0, d = new Date();
+  for(let i = 0; i < 200; i++){
+    const k = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    if(S.days[k] && S.days[k].winner){ streak++; d.setDate(d.getDate()-1); }
+    else if(i === 0){ d.setDate(d.getDate()-1); }
     else break;
   }
   return streak;
 }
 
-function calcConsecWins(){
-  let c=0,d=new Date();
-  for(let i=0;i<200;i++){
-    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-    if(S.days[k]&&S.days[k].winner){c++;d.setDate(d.getDate()-1);}
+function calcConsecWins() {
+  let c = 0, d = new Date();
+  for(let i = 0; i < 200; i++){
+    const k = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    if(S.days[k] && S.days[k].winner){ c++; d.setDate(d.getDate()-1); }
     else break;
   }
   return c;
 }
 
 // TABS
-function switchTab(tab,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+function switchTab(tab, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
-  if(el)el.classList.add('active');
-  if(tab==='week')renderWeek();
-  if(tab==='progress')renderWeight();
-  if(tab==='coaching')renderCoaching();
+  if(el) el.classList.add('active');
+  if(tab === 'week') renderWeek();
+  if(tab === 'progress') { renderWeight(); renderWorkoutPhotos(); }
+  if(tab === 'coaching') renderMeds();
 }
 
 // HABITS
-function toggleHabit(i){
-  const today=getDay(todayKey());
-  today.habits[i]=!today.habits[i];
-  today.winner=today.habits.filter(Boolean).length>=2;
-  save();renderToday();
-  if(today.winner)checkMilestones();
+function toggleHabit(i) {
+  const today = getDay(todayKey());
+  today.habits[i] = !today.habits[i];
+  today.winner = today.habits.filter(Boolean).length >= 2;
+  save();
+  renderToday();
+  if(today.winner) checkMilestones();
 }
 
-function renderToday(){
-  const today=getDay(todayKey());
-  const d=new Date();
-  document.getElementById('todayDate').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}).toUpperCase();
-  today.habits.forEach((c,i)=>{
-    const card=document.getElementById('habit-'+i);
-    const chk=document.getElementById('check-'+i);
-    if(c){card.classList.add('checked');chk.textContent='✓';}
-    else{card.classList.remove('checked');chk.textContent='';}
+function renderToday() {
+  const today = getDay(todayKey());
+  const d = new Date();
+  document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}).toUpperCase();
+  today.habits.forEach((c, i) => {
+    const card = document.getElementById('habit-'+i);
+    const chk = document.getElementById('check-'+i);
+    if(c){ card.classList.add('checked'); chk.textContent = '✓'; }
+    else { card.classList.remove('checked'); chk.textContent = ''; }
   });
-  const checked=today.habits.filter(Boolean).length;
-  const st=document.getElementById('dayStatus');
-  if(today.winner){st.className='day-status winner';st.textContent='★ WINNER DAY! '+checked+'/3 HABITS ★';}
-  else if(checked===0){st.className='day-status inprogress';st.textContent='HIT 2 OF 3 TO WIN TODAY';}
-  else{st.className='day-status inprogress';st.textContent=checked+'/3 — NEED '+(2-checked)+' MORE';}
-  const streak=calcStreak();
-  document.getElementById('streakNum').textContent=streak;
-  document.getElementById('progressFill').style.width=Math.min((streak/76)*100,100)+'%';
-  document.getElementById('progressLabel').textContent=streak+' OF 76 DAYS';
-  // Reload debrief if open
-  if (document.getElementById('debriefBody').classList.contains('open')) loadDebrief();
+  const checked = today.habits.filter(Boolean).length;
+  const st = document.getElementById('dayStatus');
+  if(today.winner){ st.className='day-status winner'; st.textContent='★ WINNER DAY! '+checked+'/3 HABITS ★'; }
+  else if(checked===0){ st.className='day-status inprogress'; st.textContent='HIT 2 OF 3 TO WIN TODAY'; }
+  else { st.className='day-status inprogress'; st.textContent=checked+'/3 — NEED '+(2-checked)+' MORE'; }
+  const streak = calcStreak();
+  document.getElementById('streakNum').textContent = streak;
+  document.getElementById('progressFill').style.width = Math.min((streak/76)*100,100)+'%';
+  document.getElementById('progressLabel').textContent = streak+' OF 76 DAYS';
+  // Reload debrief text if panel is open
+  if(document.getElementById('debriefBody').classList.contains('open')) loadDebriefFields();
+  renderFoodLog();
 }
 
-// MILESTONES — each feels like a new NES level
-const milestones=[
-  {day:10,stage:'STAGE 1 CLEAR',art:'🦅',title:'★ 10 DAYS! ★',sub:'THE EAGLE HAS LANDED',score:10000,lives:'🌟🌟🌟',msg:'Ten days. The founders signed the Declaration in less time than that.\n\nYou\'re building something real.',unlock:'MEDITATION UNLOCKED: Morning Winner Mindset'},
-  {day:21,stage:'STAGE 2 CLEAR',art:'🗽',title:'★ 21 DAYS! ★',sub:'HABIT IS FORMING',score:21000,lives:'🌟🌟🌟🌟',msg:'21 days. Science says the habit is forming.\nLiberty isn\'t given. It\'s earned. So is this.',unlock:null},
-  {day:30,stage:'STAGE 3 CLEAR',art:'🏛️',title:'★ 30 DAYS! ★',sub:'ONE MONTH STRONG',score:30000,lives:'🌟🌟🌟🌟🌟',msg:'One month. You are not the same person\nwho started Day 1.\n\nThe founders didn\'t quit either.',unlock:'MEDITATION UNLOCKED: The Winner You\'re Becoming'},
-  {day:50,stage:'STAGE 4 CLEAR',art:'⭐',title:'★ 50 DAYS! ★',sub:'OVER HALFWAY',score:50000,lives:'🌟🌟🌟🌟🌟🌟',msg:'50 days of showing up.\n76 days for independence.\nYou\'re 26 from locking this in forever.',unlock:null},
-  {day:66,stage:'STAGE 5 CLEAR',art:'🔥',title:'★ 66 DAYS! ★',sub:'HABIT LOCKED',score:66000,lives:'🌟🌟🌟🌟🌟🌟🌟',msg:'Research says 66 days locks a habit permanently.\nYou did it.\n10 more for the grand finale.',unlock:'MEDITATION UNLOCKED: The 3-Minute Reset'},
-  {day:76,stage:'★ FINAL STAGE CLEAR ★',art:'🏆',title:'★ 76 DAYS! ★',sub:'CHARLES GRINBAUM — YOU ARE A WINNER. HABIT LOCKED.',score:76000,lives:'🌟🌟🌟🌟🌟🌟🌟🌟',msg:'Est. 1776.\n\n76 days. Independence.\n\nThis is who you are now.\nNot who you were trying to be.\nWho you ARE.',unlock:null},
-];
-
-function checkMilestones(){
-  const streak=calcStreak();
-  const m=milestones.find(m=>m.day===streak&&!S.celebSeen[m.day]);
-  if(m){
-    S.celebSeen[m.day]=true;save();
-    document.getElementById('celebStage').textContent=m.stage;
-    document.getElementById('celebArt').textContent=m.art;
-    document.getElementById('celebTitle').textContent=m.title;
-    document.getElementById('celebSub').textContent=m.sub;
-    document.getElementById('celebScore').textContent='SCORE: '+m.score.toLocaleString();
-    document.getElementById('celebLives').textContent=m.lives;
-    document.getElementById('celebMsg').textContent=m.msg;
-    const unlockEl=document.getElementById('celebUnlocked');
-    if(m.unlock){unlockEl.textContent='★ '+m.unlock+' ★';unlockEl.style.display='block';}
-    else{unlockEl.style.display='none';}
-    document.getElementById('celebrationOverlay').classList.add('show');
-  }
-}
-
-function closeCelebration(){document.getElementById('celebrationOverlay').classList.remove('show');}
-
-// EMERGENCY
-const slides=[
-  {h:'STOP.',b:'You\'re about to make a decision your future self will regret.\n\nYou have 3 minutes. Just 3 minutes.'},
-  {h:'REMEMBER\nWHY.',b:'ClearDesk AI is real. Your transformation is real.\n\nEvery choice right now is a vote for who you\'re becoming.'},
-  {h:'THE BATTLE\nIS 3 MINS.',b:'Walk to a different aisle. Get water. The craving will pass.\n\nIt always does. You know this.'},
-  {h:'TOO FAR\nTO QUIT.',b:'The founders didn\'t quit when it was hard.\n\nThat food doesn\'t love you back. Walk away.'},
-  {h:'YOU ARE\nA WINNER.',b:'Not someday. Right now.\n\nThis moment — choosing to walk away — is exactly what winners do.\n\nGo.'},
-];
-let curSlide=0,emerTimer=null;
-
-function renderSlide(){
-  const s=slides[curSlide];
-  document.getElementById('slideHeadline').textContent=s.h;
-  document.getElementById('slideBody').textContent=s.b;
-  document.getElementById('slideDots').innerHTML=slides.map((_,i)=>'<div class="slide-dot'+(i===curSlide?' active':'')+'"></div>').join('');
-  const last=curSlide===slides.length-1;
-  document.getElementById('slideNextBtn').style.display=last?'none':'block';
-  document.getElementById('slideCloseBtn').style.display=last?'block':'none';
-}
-
-function nextSlide(){if(curSlide<slides.length-1){curSlide++;renderSlide();}}
-
-function triggerEmergency(){
-  curSlide=0;
-  const img=document.getElementById('overlayBgImg');
-  const src=S.anchorPhoto||S.beforePhoto||'';
-  if(src){img.src=src;img.style.display='block';}
-  else{img.style.display='none';}
-  renderSlide();
-  document.getElementById('emergencyOverlay').classList.add('show');
-  let secs=180;clearInterval(emerTimer);
-  emerTimer=setInterval(()=>{
-    secs--;
-    const m=Math.floor(secs/60),sc=secs%60;
-    document.getElementById('overlayTimer').textContent=m+':'+(sc<10?'0':'')+sc;
-    if(secs<=0)clearInterval(emerTimer);
-  },1000);
-}
-
-function closeEmergency(){clearInterval(emerTimer);document.getElementById('emergencyOverlay').classList.remove('show');}
-
-// MEDITATIONS
-const medsConfig=[
-  {id:'med1',title:'MORNING WINNER MINDSET',desc:'2-min morning reset. Start from strength.',reqConsec:3,
-   words:['Close your eyes.','Take a deep breath.','You are Charles Grinbaum.','You built something real.','You show up every day.','Today is no different.','You will eat clean.','You will move your body.','You will protect your sleep.','Not because you have to.','Because you decided.','Open your eyes.','Go win today.','★ WE THE PEOPLE ★']},
-  {id:'med2',title:'THE 3-MINUTE RESET',desc:'Emergency reset for your mind. Use it anywhere.',reqStreak:66,
-   words:['Stop what you\'re doing.','Breathe in for 4.','Hold for 4.','Breathe out for 4.','The craving is temporary.','Your goals are permanent.','You\'ve beaten this before.','You\'ll beat it again.','You are stronger than this.','The battle lasts 3 minutes.','Choose the person you\'re becoming.','Walk away.','You\'re a winner.']},
-  {id:'med3',title:'THE WINNER YOU\'RE BECOMING',desc:'A deeper visualization. Earned at Day 30.',reqStreak:30,
-   words:['Sit somewhere quiet.','Picture yourself at Day 76.','Your body has changed.','Your habits are locked in.','Your business is growing.','People see you differently.','Because you ARE different.','You did something hard.','Every single day.','You didn\'t quit.','That person is already inside you.','They\'re just waiting for you','to keep showing up.','Est. 1776.','Go be that person.']},
-];
-
-function renderCoaching(){renderVideos();renderMeds();}
-
-const videosConfig=[
-  {id:'v0',emoji:'🥊',title:'WIN THE 3-MIN BATTLE',desc:'What to do in the exact moment temptation strikes. The most important video.'},
-  {id:'v1',emoji:'🏠',title:'BUILD YOUR WINNER ENV',desc:'Set up your home so success is the path of least resistance.'},
-  {id:'v2',emoji:'🛒',title:'SHOP LIKE A WINNER',desc:'The grocery list and store strategy that eliminates bad decisions.'},
-  {id:'v3',emoji:'🥗',title:'EAT FULL, NOT FAT',desc:'Stay satisfied on clean food. The foods that fill you up and fuel you.'},
-  {id:'v4',emoji:'💪',title:'THE ONLY WORKOUT',desc:'Body for Life principles. Time-efficient transformation. No excuses.'},
-  {id:'v5',emoji:'🧠',title:'REWRITE YOUR STORY',desc:'The self-belief shift that makes everything else permanent.'},
-];
-
-function renderVideos(){
-  const container=document.getElementById('videosList');
-  if(!container)return;
-  container.innerHTML='';
-  videosConfig.forEach((v,idx)=>{
-    const hasVideo=S.videos[v.id];
-    const card=document.createElement('div');
-    card.className='video-card';
-    let thumbHtml='';
-    if(hasVideo){
-      thumbHtml=`<div class="video-thumb" onclick="playVideoFS('${v.id}')">
-        <video src="${S.videos[v.id]}" muted playsinline></video>
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
-          <div class="video-play-btn">▶</div>
-        </div>
-      </div>`;
-    } else {
-      thumbHtml=`<div class="video-thumb" style="cursor:default;">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-          <div style="font-size:2.5rem;">${v.emoji}</div>
-          <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:rgba(255,255,255,0.3);">UPLOAD VIDEO</div>
-        </div>
-      </div>`;
-    }
-    card.innerHTML=thumbHtml+`
-      <div class="video-info">
-        <div class="video-num">VIDEO ${idx+1} OF ${videosConfig.length}</div>
-        <div class="video-title">${v.title}</div>
-        <div class="video-desc">${v.desc}</div>
-        <button class="upload-btn" onclick="document.getElementById('vup_${v.id}').click()">${hasVideo?'↺ REPLACE':'+ UPLOAD'}</button>
-        <input type="file" id="vup_${v.id}" style="display:none;" accept="video/*" onchange="uploadVideo('${v.id}',this)">
-      </div>`;
-    container.appendChild(card);
-  });
-}
-
-function uploadVideo(id,input){
-  const file=input.files[0];
-  if(!file)return;
-  if(file.size>80*1024*1024){alert('Keep video under 80MB.');return;}
-  const r=new FileReader();
-  r.onload=e=>{S.videos[id]=e.target.result;save();renderVideos();};
-  r.readAsDataURL(file);
-}
-
-function playVideoFS(id){
-  const src=S.videos[id];if(!src)return;
-  document.getElementById('fsVideo').src=src;
-  document.getElementById('videoFS').classList.add('show');
-  document.getElementById('fsVideo').play();
-}
-
-function closeVideoFS(){
-  document.getElementById('fsVideo').pause();
-  document.getElementById('fsVideo').src='';
-  document.getElementById('videoFS').classList.remove('show');
-}
-
-function renderMeds(){
-  const container=document.getElementById('medsList');
-  if(!container)return;
-  container.innerHTML='';
-  const streak=calcStreak(),consec=calcConsecWins();
-  medsConfig.forEach(m=>{
-    let unlocked=(m.reqConsec&&consec>=m.reqConsec)||(m.reqStreak&&streak>=m.reqStreak);
-    const card=document.createElement('div');
-    card.className='med-card'+(unlocked?' unlocked':' locked');
-    if(unlocked)card.onclick=()=>startMeditation(m.id);
-    const lockMsg=m.reqConsec?`Win ${m.reqConsec} days in a row to unlock`:`Reach a ${m.reqStreak}-day streak to unlock`;
-    card.innerHTML=`<div class="med-icon">${unlocked?'🧘':'🔒'}</div>
-      <div><div class="med-title">${m.title}</div><div class="med-desc">${unlocked?m.desc:lockMsg}</div></div>`;
-    container.appendChild(card);
-  });
-}
-
-let medInterval=null;
-function startMeditation(id){
-  const m=medsConfig.find(x=>x.id===id);if(!m)return;
-  document.getElementById('medOverlay').classList.add('show');
-  let i=0;
-  const wordEl=document.getElementById('medWord'),fillEl=document.getElementById('medFill'),countEl=document.getElementById('medCounter');
-  function show(){
-    wordEl.classList.remove('visible');
-    setTimeout(()=>{
-      if(i>=m.words.length){closeMeditation();return;}
-      wordEl.textContent=m.words[i];
-      fillEl.style.width=((i+1)/m.words.length*100)+'%';
-      countEl.textContent=(i+1)+' / '+m.words.length;
-      wordEl.classList.add('visible');
-      i++;
-    },400);
-  }
-  show();medInterval=setInterval(show,3200);
-}
-
-function closeMeditation(){clearInterval(medInterval);document.getElementById('medOverlay').classList.remove('show');}
-
-function renderWeek(){
-  const grid=document.getElementById('weekGrid');
-  grid.innerHTML='';
-  const days=['SU','MO','TU','WE','TH','FR','SA'];
-  const today=new Date(),sow=new Date(today);
-  sow.setDate(today.getDate()-today.getDay());
-  for(let i=0;i<7;i++){
-    const d=new Date(sow);d.setDate(sow.getDate()+i);
-    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-    const data=S.days[k],isToday=k===todayKey();
-    const div=document.createElement('div');
-    div.className='week-day'+(data?.winner?' winner-day':'')+(isToday?' today':'');
-    div.innerHTML=`<div class="day-name-lbl">${days[d.getDay()]}</div><div style="font-size:${data?.winner?'0.9rem':'0.65rem'};color:${data?.winner?'var(--green)':'var(--muted)'};">${data?.winner?'★':d.getDate()}</div>`;
-    grid.appendChild(div);
-  }
-  const allDays=Object.values(S.days),wins=allDays.filter(d=>d.winner).length;
-  document.getElementById('statWins').textContent=wins;
-  document.getElementById('statBest').textContent=calcStreak();
-  document.getElementById('statPct').textContent=allDays.length>0?Math.round(wins/allDays.length*100)+'%':'0%';
-}
-
-function logWeight(){
-  const v=parseFloat(document.getElementById('weightInput').value);
-  if(!v)return;
-  S.weights.push({date:todayKey(),weight:v});save();
-  document.getElementById('weightInput').value='';
-  renderWeight();
-}
-
-function renderWeight(){
-  if(!S.weights.length)return;
-  const first=S.weights[0].weight,last=S.weights[S.weights.length-1].weight,change=last-first;
-  document.getElementById('startWeight').textContent=first;
-  document.getElementById('currentWeight').textContent=last;
-  const cel=document.getElementById('weightChange');
-  cel.textContent=(change>0?'+':'')+change.toFixed(1);
-  cel.style.color=change<=0?'var(--green)':'var(--red)';
-  document.getElementById('weightLog').innerHTML=[...S.weights].reverse().slice(0,8).map(w=>`<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.78rem;color:var(--muted);"><span>${new Date(w.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><strong style="color:white;">${w.weight} lbs</strong></div>`).join('');
-}
-
-function loadPhoto(type,input){
-  const file=input.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    document.getElementById(type+'Img').src=e.target.result;
-    document.getElementById(type+'Img').style.display='block';
-    document.getElementById(type+'Slot').classList.add('has-photo');
-    S[type+'Photo']=e.target.result;save();
-  };r.readAsDataURL(file);
-}
-
-function removePhoto(type,e){
-  e.stopPropagation();
-  document.getElementById(type+'Img').src='';
-  document.getElementById(type+'Img').style.display='none';
-  document.getElementById(type+'Slot').classList.remove('has-photo');
-  delete S[type+'Photo'];save();
-}
-
-function loadAnchorPhoto(input){
-  const file=input.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    S.anchorPhoto=e.target.result;save();
-    document.getElementById('anchorThumb').src=e.target.result;
-    document.getElementById('anchorThumb').style.display='block';
-    document.getElementById('anchorPlaceholder').style.display='none';
-  };r.readAsDataURL(file);
-}
-
-function removeAnchorPhoto(){
-  delete S.anchorPhoto;save();
-  document.getElementById('anchorThumb').src='';
-  document.getElementById('anchorThumb').style.display='none';
-  document.getElementById('anchorPlaceholder').style.display='block';
-}
-
-function resetAll(){if(confirm('Reset all data?')){localStorage.removeItem('cw76v2');location.reload();}}
-
-// DEBRIEF
+// DEBRIEF — fixed: always load from todayKey
 function toggleDebrief() {
   const toggle = document.getElementById('debriefToggle');
   const body = document.getElementById('debriefBody');
   toggle.classList.toggle('open');
   body.classList.toggle('open');
-  if (body.classList.contains('open')) loadDebrief();
+  if(body.classList.contains('open')) loadDebriefFields();
 }
 
-function loadDebrief() {
+function loadDebriefFields() {
   const key = todayKey();
   const entry = S.days[key] || {};
   document.getElementById('debriefWin').value = entry.win || '';
@@ -960,7 +1016,7 @@ function loadDebrief() {
 
 function saveDebrief() {
   const key = todayKey();
-  if (!S.days[key]) S.days[key] = { habits:[false,false,false], winner:false };
+  if(!S.days[key]) S.days[key] = { habits:[false,false,false], winner:false };
   S.days[key].win = document.getElementById('debriefWin').value.trim();
   S.days[key].hard = document.getElementById('debriefHard').value.trim();
   save();
@@ -969,10 +1025,400 @@ function saveDebrief() {
   setTimeout(() => saved.classList.remove('show'), 2000);
 }
 
+// FOOD LOG
+let pendingFoodPhoto = null;
+
+function openFoodModal() {
+  pendingFoodPhoto = null;
+  document.getElementById('foodPhotoImg').src = '';
+  document.getElementById('foodPhotoImg').style.display = 'none';
+  document.getElementById('foodPhotoLabel').style.display = 'block';
+  document.getElementById('foodNameInput').value = '';
+  document.getElementById('foodCalInput').value = '';
+  document.getElementById('aiResult').classList.remove('show');
+  document.getElementById('aiResult').textContent = '';
+  document.getElementById('aiAnalyzeBtn').disabled = true;
+  document.getElementById('aiAnalyzeBtnText').textContent = '🤖  ANALYZE PHOTO FOR CALORIES';
+  document.getElementById('foodModal').classList.add('show');
+}
+
+function closeFoodModal() {
+  document.getElementById('foodModal').classList.remove('show');
+  pendingFoodPhoto = null;
+}
+
+function previewFoodPhoto(input) {
+  const file = input.files[0];
+  if(!file) return;
+  const r = new FileReader();
+  r.onload = e => {
+    pendingFoodPhoto = e.target.result;
+    document.getElementById('foodPhotoImg').src = e.target.result;
+    document.getElementById('foodPhotoImg').style.display = 'block';
+    document.getElementById('foodPhotoLabel').style.display = 'none';
+    document.getElementById('aiAnalyzeBtn').disabled = false;
+    document.getElementById('aiResult').classList.remove('show');
+  };
+  r.readAsDataURL(file);
+}
+
+async function analyzeFood() {
+  if(!pendingFoodPhoto) return;
+  const btn = document.getElementById('aiAnalyzeBtn');
+  const btnText = document.getElementById('aiAnalyzeBtnText');
+  const resultEl = document.getElementById('aiResult');
+  btn.disabled = true;
+  btnText.textContent = '⏳  ANALYZING...';
+  resultEl.classList.remove('show');
+
+  try {
+    const base64 = pendingFoodPhoto.split(',')[1];
+    const mediaType = pendingFoodPhoto.split(';')[0].split(':')[1];
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        messages: [{
+          role: 'user',
+          content: [
+            {
+              type: 'image',
+              source: { type: 'base64', media_type: mediaType, data: base64 }
+            },
+            {
+              type: 'text',
+              text: 'You are a nutrition assistant. Look at this food photo and give a ballpark calorie estimate. Be concise: name what you see, estimate calories as a range (e.g. 400-550 cal), and note if it looks clean/healthy or not. Keep it under 3 sentences. No disclaimers.'
+            }
+          ]
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content && data.content[0] ? data.content[0].text : 'Could not analyze.';
+    resultEl.textContent = '🤖 ' + text;
+    resultEl.classList.add('show');
+    // Auto-extract a calorie number if present
+    const match = text.match(/(\d{2,4})\s*[-–]\s*(\d{2,4})/);
+    if(match && !document.getElementById('foodCalInput').value) {
+      const avg = Math.round((parseInt(match[1]) + parseInt(match[2])) / 2);
+      document.getElementById('foodCalInput').value = avg;
+    }
+    const singleMatch = !match && text.match(/(\d{3,4})\s*cal/i);
+    if(singleMatch && !document.getElementById('foodCalInput').value) {
+      document.getElementById('foodCalInput').value = singleMatch[1];
+    }
+  } catch(e) {
+    resultEl.textContent = '⚠ Could not analyze. Enter calories manually.';
+    resultEl.classList.add('show');
+  }
+  btn.disabled = false;
+  btnText.textContent = '🤖  ANALYZE PHOTO FOR CALORIES';
+}
+
+function saveFoodEntry() {
+  const name = document.getElementById('foodNameInput').value.trim();
+  const cal = parseInt(document.getElementById('foodCalInput').value) || 0;
+  if(!name && !pendingFoodPhoto) { alert('Add a name or photo first.'); return; }
+  const key = todayKey();
+  if(!S.food[key]) S.food[key] = [];
+  S.food[key].push({
+    id: Date.now(),
+    name: name || 'Meal',
+    cal: cal,
+    photo: pendingFoodPhoto || null,
+    time: new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})
+  });
+  save();
+  closeFoodModal();
+  renderFoodLog();
+}
+
+function deleteFoodEntry(key, id) {
+  if(!S.food[key]) return;
+  S.food[key] = S.food[key].filter(e => e.id !== id);
+  save();
+  renderFoodLog();
+}
+
+function renderFoodLog() {
+  const key = todayKey();
+  const entries = S.food[key] || [];
+  const list = document.getElementById('foodEntriesList');
+  const totalEl = document.getElementById('calTotalDisplay');
+  if(!list) return;
+  const total = entries.reduce((s, e) => s + (e.cal || 0), 0);
+  totalEl.textContent = total > 0 ? total + ' cal' : '0';
+  if(entries.length === 0) {
+    list.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);text-align:center;padding:0.8rem 0;line-height:1.8;">No meals logged yet. Snap a photo to start.</div>';
+    return;
+  }
+  list.innerHTML = entries.map(e => `
+    <div class="food-entry">
+      ${e.photo
+        ? `<img class="food-entry-thumb" src="${e.photo}" alt="meal">`
+        : `<div class="food-entry-thumb-placeholder">🍽️</div>`}
+      <div class="food-entry-info">
+        <div class="food-entry-name">${e.name}</div>
+        <div class="food-entry-cal">${e.cal ? e.cal+' CAL' : 'NO CAL LOGGED'}</div>
+        <div class="food-entry-time">${e.time}</div>
+      </div>
+      <button class="food-entry-delete" onclick="deleteFoodEntry('${key}',${e.id})">✕</button>
+    </div>
+  `).join('');
+}
+
+// WORKOUT PHOTOS
+function addWorkoutPhoto(input) {
+  const file = input.files[0];
+  if(!file) return;
+  const r = new FileReader();
+  r.onload = e => {
+    S.workoutPhotos.unshift({
+      id: Date.now(),
+      photo: e.target.result,
+      date: todayKey(),
+      label: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
+    });
+    // Keep max 30 workout photos to manage storage
+    if(S.workoutPhotos.length > 30) S.workoutPhotos = S.workoutPhotos.slice(0, 30);
+    save();
+    renderWorkoutPhotos();
+  };
+  r.readAsDataURL(file);
+  input.value = '';
+}
+
+function deleteWorkoutPhoto(id) {
+  S.workoutPhotos = S.workoutPhotos.filter(p => p.id !== id);
+  save();
+  renderWorkoutPhotos();
+}
+
+function renderWorkoutPhotos() {
+  const grid = document.getElementById('workoutPhotoGrid');
+  if(!grid) return;
+  if(!S.workoutPhotos || S.workoutPhotos.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;font-size:0.78rem;color:var(--muted);text-align:center;padding:1rem 0;line-height:1.8;">No workout photos yet.<br>Drop one after your next session.</div>';
+    return;
+  }
+  grid.innerHTML = S.workoutPhotos.map(p => `
+    <div class="workout-photo-card">
+      <img src="${p.photo}" alt="workout">
+      <div class="workout-photo-card-info">
+        <div class="workout-photo-date">${p.label}</div>
+      </div>
+      <button class="workout-photo-delete" onclick="deleteWorkoutPhoto(${p.id})">✕</button>
+    </div>
+  `).join('');
+}
+
+// MILESTONES
+const milestones = [
+  {day:10,stage:'STAGE 1 CLEAR',art:'🦅',title:'★ 10 DAYS! ★',sub:'THE EAGLE HAS LANDED',score:10000,lives:'🌟🌟🌟',msg:'Ten days. The founders signed the Declaration in less time than that.\n\nYou\'re building something real.',unlock:'MEDITATION UNLOCKED: Morning Winner Mindset'},
+  {day:21,stage:'STAGE 2 CLEAR',art:'🗽',title:'★ 21 DAYS! ★',sub:'HABIT IS FORMING',score:21000,lives:'🌟🌟🌟🌟',msg:'21 days. Science says the habit is forming.\nLiberty isn\'t given. It\'s earned. So is this.',unlock:null},
+  {day:30,stage:'STAGE 3 CLEAR',art:'🏛️',title:'★ 30 DAYS! ★',sub:'ONE MONTH STRONG',score:30000,lives:'🌟🌟🌟🌟🌟',msg:'One month. You are not the same person\nwho started Day 1.\n\nThe founders didn\'t quit either.',unlock:'MEDITATION UNLOCKED: The Winner You\'re Becoming'},
+  {day:50,stage:'STAGE 4 CLEAR',art:'⭐',title:'★ 50 DAYS! ★',sub:'OVER HALFWAY',score:50000,lives:'🌟🌟🌟🌟🌟🌟',msg:'50 days of showing up.\n76 days for independence.\nYou\'re 26 from locking this in forever.',unlock:null},
+  {day:66,stage:'STAGE 5 CLEAR',art:'🔥',title:'★ 66 DAYS! ★',sub:'HABIT LOCKED',score:66000,lives:'🌟🌟🌟🌟🌟🌟🌟',msg:'Research says 66 days locks a habit permanently.\nYou did it.\n10 more for the grand finale.',unlock:'MEDITATION UNLOCKED: The 3-Minute Reset'},
+  {day:76,stage:'★ FINAL STAGE CLEAR ★',art:'🏆',title:'★ 76 DAYS! ★',sub:'CHARLES GRINBAUM — YOU ARE A WINNER. HABIT LOCKED.',score:76000,lives:'🌟🌟🌟🌟🌟🌟🌟🌟',msg:'Est. 1776.\n\n76 days. Independence.\n\nThis is who you are now.\nNot who you were trying to be.\nWho you ARE.',unlock:null},
+];
+
+function checkMilestones() {
+  const streak = calcStreak();
+  const m = milestones.find(m => m.day === streak && !S.celebSeen[m.day]);
+  if(m) {
+    S.celebSeen[m.day] = true; save();
+    document.getElementById('celebStage').textContent = m.stage;
+    document.getElementById('celebArt').textContent = m.art;
+    document.getElementById('celebTitle').textContent = m.title;
+    document.getElementById('celebSub').textContent = m.sub;
+    document.getElementById('celebScore').textContent = 'SCORE: '+m.score.toLocaleString();
+    document.getElementById('celebLives').textContent = m.lives;
+    document.getElementById('celebMsg').textContent = m.msg;
+    const unlockEl = document.getElementById('celebUnlocked');
+    if(m.unlock){ unlockEl.textContent='★ '+m.unlock+' ★'; unlockEl.style.display='block'; }
+    else { unlockEl.style.display='none'; }
+    document.getElementById('celebrationOverlay').classList.add('show');
+  }
+}
+
+function closeCelebration() { document.getElementById('celebrationOverlay').classList.remove('show'); }
+
+// EMERGENCY
+const slides = [
+  {h:'STOP.',b:'You\'re about to make a decision your future self will regret.\n\nYou have 3 minutes. Just 3 minutes.'},
+  {h:'REMEMBER\nWHY.',b:'ClearDesk AI is real. Your transformation is real.\n\nEvery choice right now is a vote for who you\'re becoming.'},
+  {h:'THE BATTLE\nIS 3 MINS.',b:'Walk to a different aisle. Get water. The craving will pass.\n\nIt always does. You know this.'},
+  {h:'TOO FAR\nTO QUIT.',b:'The founders didn\'t quit when it was hard.\n\nThat food doesn\'t love you back. Walk away.'},
+  {h:'YOU ARE\nA WINNER.',b:'Not someday. Right now.\n\nThis moment — choosing to walk away — is exactly what winners do.\n\nGo.'},
+];
+let curSlide = 0, emerTimer = null;
+
+function renderSlide() {
+  const s = slides[curSlide];
+  document.getElementById('slideHeadline').textContent = s.h;
+  document.getElementById('slideBody').textContent = s.b;
+  document.getElementById('slideDots').innerHTML = slides.map((_,i) => '<div class="slide-dot'+(i===curSlide?' active':'')+'"></div>').join('');
+  const last = curSlide === slides.length - 1;
+  document.getElementById('slideNextBtn').style.display = last ? 'none' : 'block';
+  document.getElementById('slideCloseBtn').style.display = last ? 'block' : 'none';
+}
+
+function nextSlide() { if(curSlide < slides.length-1){ curSlide++; renderSlide(); } }
+
+function triggerEmergency() {
+  curSlide = 0;
+  const img = document.getElementById('overlayBgImg');
+  const src = S.anchorPhoto || S.beforePhoto || '';
+  if(src){ img.src=src; img.style.display='block'; } else { img.style.display='none'; }
+  renderSlide();
+  document.getElementById('emergencyOverlay').classList.add('show');
+  let secs = 180; clearInterval(emerTimer);
+  emerTimer = setInterval(() => {
+    secs--;
+    const m = Math.floor(secs/60), sc = secs%60;
+    document.getElementById('overlayTimer').textContent = m+':'+(sc<10?'0':'')+sc;
+    if(secs<=0) clearInterval(emerTimer);
+  }, 1000);
+}
+
+function closeEmergency() { clearInterval(emerTimer); document.getElementById('emergencyOverlay').classList.remove('show'); }
+
+// MEDITATIONS
+const medsConfig = [
+  {id:'med1',title:'MORNING WINNER MINDSET',desc:'2-min morning reset. Start from strength.',reqConsec:3,
+   words:['Close your eyes.','Take a deep breath.','You are Charles Grinbaum.','You built something real.','You show up every day.','Today is no different.','You will eat clean.','You will move your body.','You will protect your sleep.','Not because you have to.','Because you decided.','Open your eyes.','Go win today.','★ WE THE PEOPLE ★']},
+  {id:'med2',title:'THE 3-MINUTE RESET',desc:'Emergency reset for your mind. Use it anywhere.',reqStreak:66,
+   words:['Stop what you\'re doing.','Breathe in for 4.','Hold for 4.','Breathe out for 4.','The craving is temporary.','Your goals are permanent.','You\'ve beaten this before.','You\'ll beat it again.','You are stronger than this.','The battle lasts 3 minutes.','Choose the person you\'re becoming.','Walk away.','You\'re a winner.']},
+  {id:'med3',title:'THE WINNER YOU\'RE BECOMING',desc:'A deeper visualization. Earned at Day 30.',reqStreak:30,
+   words:['Sit somewhere quiet.','Picture yourself at Day 76.','Your body has changed.','Your habits are locked in.','Your business is growing.','People see you differently.','Because you ARE different.','You did something hard.','Every single day.','You didn\'t quit.','That person is already inside you.','They\'re just waiting for you','to keep showing up.','Est. 1776.','Go be that person.']},
+];
+
+function renderMeds() {
+  const container = document.getElementById('medsList');
+  if(!container) return;
+  container.innerHTML = '';
+  const streak = calcStreak(), consec = calcConsecWins();
+  medsConfig.forEach(m => {
+    let unlocked = (m.reqConsec && consec >= m.reqConsec) || (m.reqStreak && streak >= m.reqStreak);
+    const card = document.createElement('div');
+    card.className = 'med-card' + (unlocked?' unlocked':' locked');
+    if(unlocked) card.onclick = () => startMeditation(m.id);
+    const lockMsg = m.reqConsec ? `Win ${m.reqConsec} days in a row to unlock` : `Reach a ${m.reqStreak}-day streak to unlock`;
+    card.innerHTML = `<div class="med-icon">${unlocked?'🧘':'🔒'}</div>
+      <div><div class="med-title">${m.title}</div><div class="med-desc">${unlocked?m.desc:lockMsg}</div></div>`;
+    container.appendChild(card);
+  });
+}
+
+let medInterval = null;
+function startMeditation(id) {
+  const m = medsConfig.find(x => x.id === id); if(!m) return;
+  document.getElementById('medOverlay').classList.add('show');
+  let i = 0;
+  const wordEl = document.getElementById('medWord'), fillEl = document.getElementById('medFill'), countEl = document.getElementById('medCounter');
+  function show() {
+    wordEl.classList.remove('visible');
+    setTimeout(() => {
+      if(i >= m.words.length){ closeMeditation(); return; }
+      wordEl.textContent = m.words[i];
+      fillEl.style.width = ((i+1)/m.words.length*100)+'%';
+      countEl.textContent = (i+1)+' / '+m.words.length;
+      wordEl.classList.add('visible');
+      i++;
+    }, 400);
+  }
+  show(); medInterval = setInterval(show, 3200);
+}
+
+function closeMeditation() { clearInterval(medInterval); document.getElementById('medOverlay').classList.remove('show'); }
+
+function renderWeek() {
+  const grid = document.getElementById('weekGrid');
+  grid.innerHTML = '';
+  const days = ['SU','MO','TU','WE','TH','FR','SA'];
+  const today = new Date(), sow = new Date(today);
+  sow.setDate(today.getDate() - today.getDay());
+  for(let i = 0; i < 7; i++){
+    const d = new Date(sow); d.setDate(sow.getDate()+i);
+    const k = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    const data = S.days[k], isToday = k === todayKey();
+    const div = document.createElement('div');
+    div.className = 'week-day'+(data?.winner?' winner-day':'')+(isToday?' today':'');
+    div.innerHTML = `<div class="day-name-lbl">${days[d.getDay()]}</div><div style="font-size:${data?.winner?'0.9rem':'0.65rem'};color:${data?.winner?'var(--green)':'var(--muted)'};">${data?.winner?'★':d.getDate()}</div>`;
+    grid.appendChild(div);
+  }
+  const allDays = Object.values(S.days), wins = allDays.filter(d => d.winner).length;
+  document.getElementById('statWins').textContent = wins;
+  document.getElementById('statBest').textContent = calcStreak();
+  document.getElementById('statPct').textContent = allDays.length > 0 ? Math.round(wins/allDays.length*100)+'%' : '0%';
+}
+
+function logWeight() {
+  const v = parseFloat(document.getElementById('weightInput').value);
+  if(!v) return;
+  S.weights.push({date:todayKey(),weight:v}); save();
+  document.getElementById('weightInput').value = '';
+  renderWeight();
+}
+
+function renderWeight() {
+  if(!S.weights.length) return;
+  const first = S.weights[0].weight, last = S.weights[S.weights.length-1].weight, change = last - first;
+  document.getElementById('startWeight').textContent = first;
+  document.getElementById('currentWeight').textContent = last;
+  const cel = document.getElementById('weightChange');
+  cel.textContent = (change>0?'+':'')+change.toFixed(1);
+  cel.style.color = change<=0 ? 'var(--green)' : 'var(--red)';
+  document.getElementById('weightLog').innerHTML = [...S.weights].reverse().slice(0,8).map(w =>
+    `<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.78rem;color:var(--muted);"><span>${new Date(w.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span><strong style="color:white;">${w.weight} lbs</strong></div>`
+  ).join('');
+}
+
+function loadPhoto(type, input) {
+  const file = input.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = e => {
+    document.getElementById(type+'Img').src = e.target.result;
+    document.getElementById(type+'Img').style.display = 'block';
+    document.getElementById(type+'Slot').classList.add('has-photo');
+    S[type+'Photo'] = e.target.result; save();
+  }; r.readAsDataURL(file);
+}
+
+function removePhoto(type, e) {
+  e.stopPropagation();
+  document.getElementById(type+'Img').src = '';
+  document.getElementById(type+'Img').style.display = 'none';
+  document.getElementById(type+'Slot').classList.remove('has-photo');
+  delete S[type+'Photo']; save();
+}
+
+function loadAnchorPhoto(input) {
+  const file = input.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = e => {
+    S.anchorPhoto = e.target.result; save();
+    document.getElementById('anchorThumb').src = e.target.result;
+    document.getElementById('anchorThumb').style.display = 'block';
+    document.getElementById('anchorPlaceholder').style.display = 'none';
+  }; r.readAsDataURL(file);
+}
+
+function removeAnchorPhoto() {
+  delete S.anchorPhoto; save();
+  document.getElementById('anchorThumb').src = '';
+  document.getElementById('anchorThumb').style.display = 'none';
+  document.getElementById('anchorPlaceholder').style.display = 'block';
+}
+
+function resetAll() { if(confirm('Reset all data?')){ localStorage.removeItem('cw76v2'); location.reload(); } }
+
 // INIT
-if(S.anchorPhoto){document.getElementById('anchorThumb').src=S.anchorPhoto;document.getElementById('anchorThumb').style.display='block';document.getElementById('anchorPlaceholder').style.display='none';}
-if(S.beforePhoto){document.getElementById('beforeImg').src=S.beforePhoto;document.getElementById('beforeImg').style.display='block';document.getElementById('beforeSlot').classList.add('has-photo');}
-if(S.afterPhoto){document.getElementById('afterImg').src=S.afterPhoto;document.getElementById('afterImg').style.display='block';document.getElementById('afterSlot').classList.add('has-photo');}
+if(S.anchorPhoto){ document.getElementById('anchorThumb').src=S.anchorPhoto; document.getElementById('anchorThumb').style.display='block'; document.getElementById('anchorPlaceholder').style.display='none'; }
+if(S.beforePhoto){ document.getElementById('beforeImg').src=S.beforePhoto; document.getElementById('beforeImg').style.display='block'; document.getElementById('beforeSlot').classList.add('has-photo'); }
+if(S.afterPhoto){ document.getElementById('afterImg').src=S.afterPhoto; document.getElementById('afterImg').style.display='block'; document.getElementById('afterSlot').classList.add('has-photo'); }
 renderToday();
 </script>
 </body>
